@@ -18,11 +18,6 @@ describe('LoginComponent', () => {
         FormsModule,
         ReactiveFormsModule
       ],
-      // exports: [
-      //   FormsModule,
-      //   ReactiveFormsModule,
-      //   SpinnerComponent
-      // ],
       providers: [FormBuilder],
     }).compileComponents();
 
