@@ -13,7 +13,10 @@ jobs:
       - name: Run Tests
         run: ng test
 
-
+        
       - name: El test ha fallado
         if: ${{ failure() }}
+        uses: Thalia98/Viktorina@main
+        with:
+          branch: ${{ github.event.inputs.branch }}
 
