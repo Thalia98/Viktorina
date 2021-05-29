@@ -12,10 +12,8 @@ jobs:
         uses: actions/checkout@main
       - name: Run Tests
         run: ng test
+
+
       - name: El test ha fallado
-        if: failure()
-        - name: Revertir Push
-        uses: Thalia98/Viktorina@main
-        with:
-          branch: ${{ github.event.inputs.branch }}
+        if: ${{ failure() }}
 
