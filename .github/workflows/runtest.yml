@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     name: Push and run test
-    runs-on: windows-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@main
       - name: Run Tests
         run: ng test
