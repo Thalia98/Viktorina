@@ -1,5 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
+import { SpinnerComponent } from '../../shared/spinner/spinner.component';
 
 import { LoginComponent } from './login.component';
 
@@ -9,8 +12,18 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [LoginComponent],
+      imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      // exports: [
+      //   FormsModule,
+      //   ReactiveFormsModule,
+      //   SpinnerComponent
+      // ],
+      providers: [FormBuilder],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);

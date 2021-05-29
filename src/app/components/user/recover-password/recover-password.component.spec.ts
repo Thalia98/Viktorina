@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { RecoverPasswordComponent } from './recover-password.component';
@@ -9,8 +11,13 @@ describe('RecoverPasswordComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RecoverPasswordComponent ],
-      imports: [IonicModule.forRoot()]
+      declarations: [RecoverPasswordComponent],
+      imports: [
+        CommonModule,
+        FormsModule,
+        ReactiveFormsModule
+      ],
+      providers: [FormBuilder],
     }).compileComponents();
 
     fixture = TestBed.createComponent(RecoverPasswordComponent);

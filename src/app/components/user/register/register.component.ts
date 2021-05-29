@@ -28,8 +28,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit() { }
 
   register() {
-    this.afAuth.creatUserWithEmailAndPassword();
-  
+    this.afAuth.createUserWithEmailAndPassword(this.formGroup.get('user').value, this.formGroup.get('password').value);
   }
 
   checkPassword(group) {
