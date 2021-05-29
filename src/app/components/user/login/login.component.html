@@ -1,0 +1,30 @@
+<div class="contenedor">
+  <div class="card w-90">
+    <div class="card-body">
+      <h2 class="text-center title">Login</h2>
+      <form [formGroup]="formGroup" (ngSubmit)="login()">
+        <div class="mb-3">
+          <input type="text" formControlName="user" class="form-control" placeholder="Email">
+        <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('required')" class="text-danger">
+          <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+        </span>
+        <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('email')" class="text-danger">
+          <strong>{{errorFormText.ERROR_EMAIL}}</strong>
+        </span>
+        </div>
+        <div class="mb-3">
+          <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+          <span *ngIf="formGroup.get('password')?.touched && formGroup.get('password').hasError('required')" class="text-danger">
+            <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+          </span>
+        </div>
+        <div class="text-center mb-5">
+          <a routerLink="/user/register">Registrarse</a><br>
+          <a routerLink="/user/recoverPass">Recuperar contraseña</a>
+        </div>
+        <button class="btn-secondary btn-lg" routerLink="/">Volver</button>
+        <button type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
+      </form>
+    </div>
+  </div>
+</div>
