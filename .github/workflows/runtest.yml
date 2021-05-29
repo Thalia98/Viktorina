@@ -4,10 +4,8 @@ on:
     branches:
       - main
       - master
-
 jobs:
   build:
-    name: Push and run test
     runs-on: windows-latest
     steps:
       - name: Checkout Repo
@@ -15,7 +13,7 @@ jobs:
       - name: Run Tests
         run: ng test
       - name: El test ha fallado
-        if: ${{ failure() }}
+        if: failure()
         - name: Revertir Push
         uses: Thalia98/Viktorina@main
         with:
