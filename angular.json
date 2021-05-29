@@ -34,7 +34,8 @@
             "styles": [
               "src/theme/variables.scss",
               "src/global.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"],
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -162,6 +163,10 @@
               "devServerTarget": "app:serve:production"
             }
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
         }
       }
     }

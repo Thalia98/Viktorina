@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "viktorina-5b34b": {
+      "hosting": {
+        "app": [
+          "viktorina-5b34b"
+        ]
+      }
+    }
+  }
+}
