@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - name: Checkout Repo
-        uses: Thalia98/Viktorina@main
+        uses: actions/checkout@v2
       - name: Run Tests
         run: ng test
 
