@@ -21,4 +21,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
       - run: npm run test:prod
-      - run: npm run lint
+      - name: Falla el test
+      if: failure()
+        run: echo 'Ha fallado el test. Revirtiendo el push.'

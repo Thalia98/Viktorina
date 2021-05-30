@@ -13,12 +13,12 @@ describe('LoginComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [
-        CommonModule,
-        FormsModule,
-        ReactiveFormsModule
-      ],
-      providers: [FormBuilder],
+      // imports: [
+      //   CommonModule,
+      //   FormsModule,
+      //   ReactiveFormsModule
+      // ],
+      // providers: [FormBuilder],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LoginComponent);
