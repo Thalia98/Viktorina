@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    defaults:
-      run:
-        working-directory: ng-toolkit 
 
     strategy:
       matrix:
