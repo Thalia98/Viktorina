@@ -1,21 +1,22 @@
 name: Run test
 on:
+  pull_request:
   push:
     branches:
       - main
       - master
 jobs:
-  build:
+  pre-commit:
     runs-on: windows-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@main
+        uses: actions/Viktorina@main
       - name: Run Tests
         run: ng test
 
         
       - name: El test ha fallado
-        if: ${{ failure() }}
+        if: ${{ success() }}
         uses: Thalia98/Viktorina@main
         with:
           branch: ${{ github.event.inputs.branch }}
