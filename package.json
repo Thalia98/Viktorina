@@ -10,7 +10,8 @@
     "test": "ng test --watch false --browsers ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage"
+    "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
