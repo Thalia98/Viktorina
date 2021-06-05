@@ -4,40 +4,40 @@
       <h2 class="text-center title">Registrarse</h2>
       <form [formGroup]="formGroup" (ngSubmit)="register()">
         <div class="mb-3">
-          <input [(ngModel)]="user" type="text" formControlName="user" class="form-control" placeholder="Email">
-          <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('required')"
+          <input id="emailInput" [(ngModel)]="user" type="text" formControlName="user" class="form-control" placeholder="Email">
+          <span [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')"
             class="text-danger">
-            <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+            <strong id="errorEmailRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
-          <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('email')" class="text-danger">
-            <strong>{{errorFormText.ERROR_EMAIL}}</strong>
+          <span [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('email')" class="text-danger">
+            <strong id="errorEmail">{{errorFormText.ERROR_EMAIL}}</strong>
           </span>
         </div>
         <div class="mb-3">
-          <input [(ngModel)]="pass" type="password" formControlName="password" class="form-control" placeholder="Contraseña">
-          <span *ngIf="formGroup.get('password')?.touched && formGroup.get('password').hasError('required')"
+          <input id="passwordInput" [(ngModel)]="pass" type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+          <span [hidden]="!formGroup.get('password')?.touched || formGroup.get('password')?.touched && !formGroup.get('password').hasError('required')"
             class="text-danger">
-            <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+            <strong id="errorPasswordRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
           <span
-            *ngIf="formGroup.get('password')?.touched && formGroup.get('password').hasError('minlength')"
+            [hidden]="!formGroup.get('password')?.touched || formGroup.get('password')?.touched && !formGroup.get('password').hasError('minlength')"
             class="text-danger">
-            <strong>{{errorFormText.ERROR_MIN_LENGTH}}</strong>
+            <strong id="errorPasswordMinLength">{{errorFormText.ERROR_MIN_LENGTH}}</strong>
           </span>
         </div>
         <div class="mb-3">
-          <input type="password" formControlName="passwordRepeat" class="form-control" placeholder="Repetir Contraseña">
-          <span *ngIf="formGroup.hasError('notSame')"
+          <input id="passwordRepeatInput" type="password" formControlName="passwordRepeat" class="form-control" placeholder="Repetir Contraseña">
+          <span [hidden]="!formGroup.hasError('notSame')"
             class="text-danger">
-            <strong>{{errorFormText.ERROR_NOT_SAME}}</strong>
+            <strong id="passwordRepeatErrorNotSame">{{errorFormText.ERROR_NOT_SAME}}</strong>
           </span>
-          <span *ngIf="formGroup.get('passwordRepeat')?.touched && formGroup.get('passwordRepeat').hasError('required')"
+          <span [hidden]="!formGroup.get('passwordRepeat')?.touched || formGroup.get('passwordRepeat')?.touched && !formGroup.get('passwordRepeat').hasError('required')"
           class="text-danger">
-          <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+          <strong id="passwordRepeatErrorRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
         </span>
         </div>
-        <button class="btn-secondary btn-lg" routerLink="/user">Volver</button>
-        <button type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
+        <button id="goLogin" class="btn-secondary btn-lg" routerLink="/user">Volver</button>
+        <button id="submitButton" type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
       </form>
     </div>
   </div>

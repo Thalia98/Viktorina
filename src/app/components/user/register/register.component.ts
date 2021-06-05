@@ -16,7 +16,7 @@ export class RegisterComponent implements OnInit {
   pass: String;
 
   constructor(
-    private formBuilder: FormBuilder,
+    public formBuilder: FormBuilder,
     private afAuth: AngularFireAuth) {
     this.formGroup = this.formBuilder.group({
       user: ['', [Validators.required, Validators.email]],
