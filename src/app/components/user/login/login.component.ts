@@ -10,7 +10,7 @@ export class LoginComponent implements OnInit {
   formGroup: FormGroup;
   errorFormText = ERROR_FORM;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
       user: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],

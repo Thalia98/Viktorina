@@ -4,26 +4,26 @@
       <h2 class="text-center title">Login</h2>
       <form [formGroup]="formGroup" (ngSubmit)="login()">
         <div class="mb-3">
-          <input type="text" formControlName="user" class="form-control" placeholder="Email">
-        <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('required')" class="text-danger">
-          <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+          <input id="email" type="text" formControlName="user" class="form-control" placeholder="Email">
+        <span id="spanIdEmail" #errorEmailRequired [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')" class="text-danger">
+          <strong id="errorEmailRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
         </span>
-        <span *ngIf="formGroup.get('user')?.touched && formGroup.get('user').hasError('email')" class="text-danger">
-          <strong>{{errorFormText.ERROR_EMAIL}}</strong>
+        <span [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('email')" class="text-danger">
+          <strong id="errorEmail">{{errorFormText.ERROR_EMAIL}}</strong>
         </span>
         </div>
         <div class="mb-3">
-          <input type="password" formControlName="password" class="form-control" placeholder="Contraseña">
-          <span *ngIf="formGroup.get('password')?.touched && formGroup.get('password').hasError('required')" class="text-danger">
-            <strong>{{errorFormText.ERROR_REQUIRED}}</strong>
+          <input id="password" type="password" formControlName="password" class="form-control" placeholder="Contraseña">
+          <span [hidden]="!formGroup.get('password')?.touched || formGroup.get('password')?.touched && !formGroup.get('password').hasError('required')" class="text-danger">
+            <strong id="errorPasswordRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
         </div>
         <div class="text-center mb-5">
-          <a routerLink="/user/register">Registrarse</a><br>
-          <a routerLink="/user/recoverPass">Recuperar contraseña</a>
+          <a id="goRegister" routerLink="/user/register">Registrarse</a><br>
+          <a id="goRecoverPassword" routerLink="/user/recoverPass">Recuperar contraseña</a>
         </div>
-        <button class="btn-secondary btn-lg" routerLink="/">Volver</button>
-        <button type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
+        <button id="goBack" class="btn-secondary btn-lg" routerLink="/">Volver</button>
+        <button id="submitButton" type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
       </form>
     </div>
   </div>
