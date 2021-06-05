@@ -11,7 +11,7 @@ export class RecoverPasswordComponent implements OnInit {
   formGroup: FormGroup;
   errorFormText = ERROR_FORM;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(public formBuilder: FormBuilder) {
     this.formGroup = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]]
     });
