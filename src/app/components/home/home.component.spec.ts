@@ -10,7 +10,6 @@ import { LoginComponent } from '../user/login/login.component';
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
-  let location: Location;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -58,9 +57,10 @@ describe('HomeComponent', () => {
   it('go to login', fakeAsync(() => {
     document.getElementById('goLogin').click();
     tick();
+    const location: Location = TestBed.get(Location);
 
-    // console.log(location.path());
-    // expect(location.path()).toBe('/user');
+    expect(location.path()).toContain('/user');
+
   }));
 
 });
