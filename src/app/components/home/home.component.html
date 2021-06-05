@@ -4,14 +4,14 @@
       <strong>No ha ingresado el PIN</strong>
     </div>
 
-    <input [(ngModel)]="pin" type="text" class="mb-3 form-control input-enter" placeholder="PIN del juego">
-    <ion-button (click)="enterGame()" class="btn-main btn-enter">Ingresar</ion-button>
+    <input [(ngModel)]="pin" #numberPin type="text" class="mb-3 form-control input-enter" id="numberPin" placeholder="PIN de la sala">
+    <ion-button (click)="enterGame()" class="btn-main btn-enter" id="enterGame">Ingresar</ion-button>
   </div>
 
   <div class="fixed-bottom">
     <p class="text text-center">
-      Crea tu propio cuestionauuurio GRATIS
-      <a class="link" routerLink="/user">aquí</a>
+      Crea tu propio cuestionario GRATIS
+      <a class="link" id="goLogin" routerLink="/user">aquí</a>
     </p>
   </div>
 </ion-content>

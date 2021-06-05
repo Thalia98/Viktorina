@@ -8,6 +8,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test --watch false --browsers ChromeHeadless",
+    "local": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "test:prod": "ng test --browsers=ChromeHeadless --watch=false --code-coverage",
