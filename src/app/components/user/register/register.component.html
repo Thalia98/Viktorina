@@ -1,21 +1,31 @@
 <div class="contenedor">
+  <div *ngIf="loading" class="spinner-backdrop">
+    <app-spinner></app-spinner>
+  </div>
+  <div *ngIf="loading" class="backdrop"></div>
   <div class="card w-90">
     <div class="card-body">
       <h2 class="text-center title">Registrarse</h2>
       <form [formGroup]="formGroup" (ngSubmit)="register()">
         <div class="mb-3">
-          <input id="emailInput" [(ngModel)]="user" type="text" formControlName="user" class="form-control" placeholder="Email">
-          <span [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')"
+          <input id="emailInput" [(ngModel)]="user" type="text" formControlName="user" class="form-control"
+            placeholder="Email">
+          <span
+            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')"
             class="text-danger">
             <strong id="errorEmailRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
-          <span [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('email')" class="text-danger">
+          <span
+            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('email')"
+            class="text-danger">
             <strong id="errorEmail">{{errorFormText.ERROR_EMAIL}}</strong>
           </span>
         </div>
         <div class="mb-3">
-          <input id="passwordInput" [(ngModel)]="pass" type="password" formControlName="password" class="form-control" placeholder="Contraseña">
-          <span [hidden]="!formGroup.get('password')?.touched || formGroup.get('password')?.touched && !formGroup.get('password').hasError('required')"
+          <input id="passwordInput" [(ngModel)]="pass" type="password" formControlName="password" class="form-control"
+            placeholder="Contraseña">
+          <span
+            [hidden]="!formGroup.get('password')?.touched || formGroup.get('password')?.touched && !formGroup.get('password').hasError('required')"
             class="text-danger">
             <strong id="errorPasswordRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
@@ -26,18 +36,20 @@
           </span>
         </div>
         <div class="mb-3">
-          <input id="passwordRepeatInput" type="password" formControlName="passwordRepeat" class="form-control" placeholder="Repetir Contraseña">
-          <span [hidden]="!formGroup.hasError('notSame')"
-            class="text-danger">
+          <input id="passwordRepeatInput" type="password" formControlName="passwordRepeat" class="form-control"
+            placeholder="Repetir Contraseña">
+          <span [hidden]="!formGroup.hasError('notSame')" class="text-danger">
             <strong id="passwordRepeatErrorNotSame">{{errorFormText.ERROR_NOT_SAME}}</strong>
           </span>
-          <span [hidden]="!formGroup.get('passwordRepeat')?.touched || formGroup.get('passwordRepeat')?.touched && !formGroup.get('passwordRepeat').hasError('required')"
-          class="text-danger">
-          <strong id="passwordRepeatErrorRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
-        </span>
+          <span
+            [hidden]="!formGroup.get('passwordRepeat')?.touched || formGroup.get('passwordRepeat')?.touched && !formGroup.get('passwordRepeat').hasError('required')"
+            class="text-danger">
+            <strong id="passwordRepeatErrorRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
+          </span>
         </div>
         <button id="goLogin" class="btn-secondary btn-lg" routerLink="/user">Volver</button>
-        <button id="submitButton" type="submit" [disabled]="formGroup.invalid" class="btn-primary btn-lg float-end">Aceptar</button>
+        <button id="submitButton" type="submit" [disabled]="formGroup.invalid"
+          class="btn-primary btn-lg float-end">Aceptar</button>
       </form>
     </div>
   </div>
