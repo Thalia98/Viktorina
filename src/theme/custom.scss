@@ -39,3 +39,17 @@ ion-app {
 .w-90 {
     width: 90% !important;
 }
+
+.backdrop {
+    background-color: black;
+    opacity: 0.5;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 10;
+}
+
+.spinner-backdrop {
+    z-index: 11;
+    position: absolute;
+}

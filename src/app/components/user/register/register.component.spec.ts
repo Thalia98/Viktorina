@@ -10,6 +10,7 @@ import { Location } from "@angular/common";
 import { RegisterComponent } from './register.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { LoginComponent } from '../login/login.component';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -29,7 +30,8 @@ describe('RegisterComponent', () => {
             { path: 'user', component: LoginComponent },
             { path: 'user/register', component: RegisterComponent },
           ]
-        )
+        ),
+        ToastrModule.forRoot(),
       ],
       providers: [FormBuilder],
     }).compileComponents();
