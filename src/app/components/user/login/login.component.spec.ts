@@ -10,6 +10,10 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HomeComponent } from '../../home/home.component';
 import { RecoverPasswordComponent } from '../recover-password/recover-password.component';
 import { RegisterComponent } from '../register/register.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { ToastrModule } from 'ngx-toastr';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -22,6 +26,9 @@ describe('LoginComponent', () => {
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        ToastrModule.forRoot(),
         RouterTestingModule.withRoutes(
           [
             { path: '', component: HomeComponent },
@@ -98,14 +105,4 @@ describe('LoginComponent', () => {
     expect(location.path()).toContain('/register');
 
   }));
-
-  it('go back', fakeAsync(() => {
-    document.getElementById('goBack').click();
-    tick();
-    const location: Location = TestBed.get(Location);
-
-    expect(location.path()).toContain('/');
-
-  }));
-
 });

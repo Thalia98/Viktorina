@@ -1,7 +1,13 @@
 import { CommonModule } from '@angular/common';
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
+import { ToastrModule } from 'ngx-toastr';
+import { environment } from 'src/environments/environment';
+import { LoginComponent } from '../login/login.component';
 
 import { RecoverPasswordComponent } from './recover-password.component';
 
@@ -15,7 +21,15 @@ describe('RecoverPasswordComponent', () => {
       imports: [
         CommonModule,
         FormsModule,
-        ReactiveFormsModule
+        AngularFireModule.initializeApp(environment.firebaseConfig),
+        AngularFireAuthModule,
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes(
+          [
+            { path: 'user', component: LoginComponent },
+          ]
+        ),
+        ToastrModule.forRoot(),
       ],
       providers: [FormBuilder],
     }).compileComponents();
