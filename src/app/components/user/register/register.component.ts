@@ -4,6 +4,7 @@ import { ERROR_FORM } from 'src/app/globalValues';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { FirebaseManagementService } from 'src/app/services/firebase-management.service';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,9 @@ export class RegisterComponent implements OnInit {
     public formBuilder: FormBuilder,
     private afAuth: AngularFireAuth,
     private router: Router,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private firebaseManagementService: FirebaseManagementService
+    ) {
     this.formGroup = this.formBuilder.group({
       user: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -35,28 +38,14 @@ export class RegisterComponent implements OnInit {
   register() {
     this.loading = true;
 
-    this.afAuth.createUserWithEmailAndPassword(this.formGroup.get('user').value, this.formGroup.get('password').value).then(() => {
-      this.toastr.success('', 'Usuario registrado con éxito');
+    this.afAuth.createUserWithEmailAndPassword(this.formGroup.get('user').value, this.formGroup.get('password').value).then(res => {
+      res.user?.sendEmailVerification();
+      this.toastr.success('Envío de correo', 'Enviamos de correo para verificar su cuenta');
       this.router.navigate(['/user']);
     }).catch(error => {
       this.loading = false;
-      this.toastr.error(this.errorFirebaseRegister(error.code), 'Oops ha ocurrido un error');
+      this.toastr.error(this.firebaseManagementService.errorsFirebase(error.code), 'Oops ha ocurrido un error');
     })
-  }
-
-  errorFirebaseRegister(cod: string) {
-    switch (cod) {
-      case 'auth/invalid-email':
-        return 'El email no es válido';
-      case 'auth/invalid-password':
-        return 'La contraseña es débil';
-      case 'auth/email-already-exists':
-        return 'El email ya existe.';
-      case 'auth/email-already-in-use':
-        return 'El email ya está en uso.';
-      default:
-        return '';
-    }
   }
 
   checkPassword(group: FormGroup) {
