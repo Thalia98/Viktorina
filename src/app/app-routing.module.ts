@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
@@ -10,7 +11,13 @@ const routes: Routes = [
   {
     path: 'user',
     loadChildren: () => import('./components/user/user.module')
-                        .then(m => m.UserModule)
+      .then(m => m.UserModule)
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    loadChildren: () => import('./components/dashboard/dashboard.module')
+      .then(m => m.DashboardModule)
   },
   {
     path: '**',

@@ -13,6 +13,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HomeComponent } from './components/home/home.component';
     AngularFireAuthModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    DashboardModule,
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
