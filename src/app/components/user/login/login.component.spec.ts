@@ -7,7 +7,6 @@ import { Location } from "@angular/common";
 
 import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HomeComponent } from '../../home/home.component';
 import { RecoverPasswordComponent } from '../recover-password/recover-password.component';
 import { RegisterComponent } from '../register/register.component';
 import { AngularFireModule } from '@angular/fire';
@@ -31,7 +30,6 @@ describe('LoginComponent', () => {
         ToastrModule.forRoot(),
         RouterTestingModule.withRoutes(
           [
-            { path: '', component: HomeComponent },
             { path: 'user/recoverPass', component: RecoverPasswordComponent },
             { path: 'user/register', component: RegisterComponent },
         ]
@@ -88,21 +86,4 @@ describe('LoginComponent', () => {
     expect(strongEl.innerHTML).toEqual('Este campo no puede estar vacío');
   }));
 
-  it('go to recoverPass', fakeAsync(() => {
-    document.getElementById('goRecoverPassword').click();
-    tick();
-    const location: Location = TestBed.get(Location);
-
-    expect(location.path()).toContain('/recoverPass');
-
-  }));
-
-  it('go to register', fakeAsync(() => {
-    document.getElementById('goRegister').click();
-    tick();
-    const location: Location = TestBed.get(Location);
-
-    expect(location.path()).toContain('/register');
-
-  }));
 });

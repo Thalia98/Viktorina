@@ -35,7 +35,7 @@ export class RecoverPasswordComponent implements OnInit {
 
     this.afAuth.sendPasswordResetEmail(this.formGroup.get('email').value).then(() => {
       this.toastr.info('Restablecer contraseña', 'Enviamos un correo para restablecer la contraseña.')
-      this.router.navigate(['/user']);
+      this.router.navigate(['/']);
     }).catch( error => {
       this.loading = false;
 

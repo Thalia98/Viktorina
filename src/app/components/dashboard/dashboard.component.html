@@ -1,2 +1,22 @@
-<app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<ion-toolbar style="--min-height: 40px;">
+    <ion-buttons slot="start">
+        <ion-menu-button class="menu-button"></ion-menu-button>
+    </ion-buttons>
+</ion-toolbar>
+
+<ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+        <ion-toolbar>
+            <ion-title>¡Hola de nuevo!</ion-title>
+        </ion-toolbar>
+    </ion-header>
+    <ion-content class="menu">
+        <ion-list class="white-color-list">
+            <ion-item>Mis cuestionarios</ion-item>
+            <ion-item>Todos los cuestionarios</ion-item>
+            <ion-item>Cerrar sesión</ion-item>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-router-outlet id="main" class="base-container"></ion-router-outlet>

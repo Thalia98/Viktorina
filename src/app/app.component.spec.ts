@@ -1,9 +1,12 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
 
@@ -12,11 +15,16 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        HomeComponent],
+      ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
-      imports: [ 
-        ReactiveFormsModule
-       ]
+      imports: [
+        ReactiveFormsModule,
+        RouterTestingModule
+      ],
+      providers: [
+        SplashScreen,
+        StatusBar
+      ]
     }).compileComponents();
   }));
 

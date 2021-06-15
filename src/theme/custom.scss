@@ -53,3 +53,33 @@ ion-app {
     z-index: 11;
     position: absolute;
 }
+
+ion-toolbar {
+    --background: #343a40!important;
+    ion-title {
+        color: blanchedalmond;
+    }
+}
+
+.white-color-list {
+    ion-item{
+        color: blanchedalmond;
+    }
+}
+
+ion-searchbar {
+    --background: aliceblue !important;
+    padding: 0 !important;
+}
+
+.ion-page {
+    justify-content: flex-start !important;
+}
+
+.button-filter {
+    width: 50%;
+    margin: 0;
+    --background: aliceblue;
+    color: rgb(102, 102, 102);
+    --border-radius: 0;
+}

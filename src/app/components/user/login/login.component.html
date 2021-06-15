@@ -29,12 +29,11 @@
           </span>
         </div>
         <div class="text-center mb-5">
-          <a id="goRegister" routerLink="/user/register">Registrarse</a><br>
-          <a id="goRecoverPassword" routerLink="/user/recoverPass">Recuperar contraseña</a>
+          <a id="goRegister" routerLink="/register">Registrarse</a><br>
+          <a id="goRecoverPassword" routerLink="/recoverPass">Recuperar contraseña</a>
         </div>
-        <button id="goBack" class="btn-secondary btn-lg" routerLink="/">Volver</button>
         <button id="submitButton" type="submit" [disabled]="formGroup.invalid"
-          class="btn-primary btn-lg float-end">Aceptar</button>
+          class="btn-primary btn-lg float-end w-100">Aceptar</button>
       </form>
     </div>
   </div>

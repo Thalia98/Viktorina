@@ -1,0 +1,22 @@
+.menu-button {
+    font-size: 35px;
+    width: 48px;
+    height: 19px;
+    --border-radius: 0px;
+    color: blanchedalmond;
+  }
+
+  .base-container {
+      margin-top: 34px;
+  }
+
+  .menu {
+      ion-list, ion-item {
+          background: #515962;
+      }
+
+      ion-item {
+        --background: #515962;
+      }
+      --background: #515962;
+  }

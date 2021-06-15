@@ -41,7 +41,7 @@ export class RegisterComponent implements OnInit {
     this.afAuth.createUserWithEmailAndPassword(this.formGroup.get('user').value, this.formGroup.get('password').value).then(res => {
       res.user?.sendEmailVerification();
       this.toastr.success('Envío de correo', 'Enviamos de correo para verificar su cuenta');
-      this.router.navigate(['/user']);
+      this.router.navigate(['/']);
     }).catch(error => {
       this.loading = false;
       this.toastr.error(this.firebaseManagementService.errorsFirebase(error.code), 'Oops ha ocurrido un error');

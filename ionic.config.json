@@ -1,5 +1,7 @@
 {
   "name": "Viktorina",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

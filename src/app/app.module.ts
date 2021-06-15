@@ -1,3 +1,4 @@
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { RouteReuseStrategy } from '@angular/router';
 import { environment } from '../environments/environment';
 
@@ -10,16 +11,14 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
-
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   entryComponents: [],
   imports: [
@@ -33,7 +32,14 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     ToastrModule.forRoot(),
     DashboardModule,
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [
+    {
+      provide: RouteReuseStrategy,
+      useClass: IonicRouteStrategy,
+    },
+    SplashScreen,
+    StatusBar,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

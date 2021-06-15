@@ -1,0 +1,36 @@
+.add-button {
+    z-index: 1;
+    background-color: #00B176;
+    border-radius: 100px;
+    height: 59px;
+    width: 59px;
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    ion-icon{
+        font-size: 33px;
+        color: white;
+        margin-top: 12px;
+    }
+}
+
+.background-white {
+    --background: aliceblue;
+}
+
+.date {
+    color: rgb(102, 102, 102);
+    font-style: italic;
+}
+
+.item-list {
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+ion-item:last-child {
+    margin-bottom: 73px !important;
+}

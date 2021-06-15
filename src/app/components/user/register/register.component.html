@@ -6,7 +6,7 @@
   <div class="card w-90">
     <div class="card-body">
       <h2 class="text-center title">Registrarse</h2>
-      <form [formGroup]="formGroup" (ngSubmit)="register()">
+      <form [formGroup]="formGroup">
         <div class="mb-3">
           <input id="emailInput" [(ngModel)]="user" type="text" formControlName="user" class="form-control"
             placeholder="Email">
@@ -47,8 +47,8 @@
             <strong id="passwordRepeatErrorRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
         </div>
-        <button id="goLogin" class="btn-secondary btn-lg" routerLink="/user">Volver</button>
-        <button id="submitButton" type="submit" [disabled]="formGroup.invalid"
+        <button id="goLogin" class="btn-secondary btn-lg" routerLink="/">Volver</button>
+        <button id="submitButton" (click)="register()" [disabled]="formGroup.invalid"
           class="btn-primary btn-lg float-end">Aceptar</button>
       </form>
     </div>

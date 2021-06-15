@@ -4,3 +4,9 @@ export const ERROR_FORM = {
     ERROR_MIN_LENGTH: 'Debe de tener un mínimo de 6 carácteres',
     ERROR_NOT_SAME: 'Las contraseñas no coinciden'
 };
+
+export const TOKEN_KEY = '6hrFDATxrG9w14QY9wwnmVhLE0Wg6LIvwOwUaxz761m1JdsfsdfsdAS5xhSkw0_MQz6bpcJnrFUDwp5lPPFC157dHxbkKlDiQ9XY3ZIP8zAGCsS8ruasdasKjIaIargX';
+
+export class Menu {
+    isMyQuestionnaires = false;
+}
