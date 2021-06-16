@@ -12,9 +12,9 @@
     </ion-header>
     <ion-content class="menu">
         <ion-list class="white-color-list">
-            <ion-item>Mis cuestionarios</ion-item>
-            <ion-item>Todos los cuestionarios</ion-item>
-            <ion-item>Cerrar sesión</ion-item>
+            <ion-item (click)="goDashboard(true)">Mis cuestionarios</ion-item>
+            <ion-item (click)="goDashboard(false)">Todos los cuestionarios</ion-item>
+            <ion-item (click)="logOut()">Cerrar sesión</ion-item>
         </ion-list>
     </ion-content>
 </ion-menu>

@@ -1,8 +1,8 @@
-import { AuthGuard } from './../../guards/auth.guard';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,16 +14,22 @@ export class DashboardComponent implements OnInit {
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
-    private authGuardService: AuthenticationService
+    private authGuardService: AuthenticationService,
+    private menuCtrl: MenuController,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   logOut() {
     this.afAuth.signOut();
     this.authGuardService.logout();
     localStorage.removeItem('user');
+    this.menuCtrl.close();
     this.router.navigate(['/']);
+  }
+
+  goDashboard(isMyQuestionnaires) {
+    this.router.navigate(['dashboard', { isMyQuestionnaires: isMyQuestionnaires }]);
   }
 
 }

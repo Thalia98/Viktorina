@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Menu } from 'src/app/globalValues';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-list-questionnaires',
@@ -7,38 +7,47 @@ import { Menu } from 'src/app/globalValues';
   styleUrls: ['./list-questionnaires.component.scss'],
 })
 export class ListQuestionnairesComponent implements OnInit {
-lista = [
-  {
-    descripcion: 'dddd',
-    titulo: 'titulo',
-    fecha: '26/05/32'
-  },
-  {
-    descripcion: 'dddd',
-    titulo: 'titulo',
-    fecha: '26/05/32'
-  },
-  {
-    descripcion: 'dddd',
-    titulo: 'titulo',
-    fecha: '26/05/32'
-  },
-  {
-    descripcion: 'dddd',
-    titulo: 'titulo',
-    fecha: '26/05/32'
-  },
-  {
-    descripcion: 'dddd',
-    titulo: 'titulo',
-    fecha: '26/05/32'
-  },
-]
+  isMyQuestionnaires: boolean;
+
+  lista = [
+    {
+      descripcion: 'dddd',
+      titulo: 'titulo',
+      fecha: '26/05/32'
+    },
+    {
+      descripcion: 'dddd',
+      titulo: 'titulo',
+      fecha: '26/05/32'
+    },
+    {
+      descripcion: 'dddd',
+      titulo: 'titulo',
+      fecha: '26/05/32'
+    },
+    {
+      descripcion: 'dddd',
+      titulo: 'titulo',
+      fecha: '26/05/32'
+    },
+    {
+      descripcion: 'dddd',
+      titulo: 'titulo',
+      fecha: '26/05/32'
+    },
+  ]
   constructor(
-    public menu: Menu
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params.isMyQuestionnaires === 'false') {
+        this.isMyQuestionnaires = false;
+      } else {
+        this.isMyQuestionnaires = true;
+      }
+    });
   }
 
 }

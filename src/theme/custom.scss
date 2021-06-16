@@ -30,6 +30,11 @@ ion-app {
     font-family: 'Open Sans', sans-serif;
 }
 
+.btn-secondary {
+    background-color: #343a40!important;
+    border-color: #343a40!important;
+}
+
 .btn-primary.disabled, .btn-primary:disabled {
     color: #fff;
     background-color: #5c9eff !important;
@@ -82,4 +87,8 @@ ion-searchbar {
     --background: aliceblue;
     color: rgb(102, 102, 102);
     --border-radius: 0;
+}
+
+.alert-wrapper {
+    --background: white !important;
 }
