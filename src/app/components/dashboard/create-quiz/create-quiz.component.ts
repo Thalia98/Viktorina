@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-quiz',
@@ -23,6 +24,7 @@ export class CreateQuizComponent implements OnInit {
 
   constructor(
     public formBuilder: FormBuilder,
+    private router: Router,
   ) {
     this.formGroup = this.formBuilder.group({
       title: ['', Validators.required],
@@ -40,6 +42,12 @@ export class CreateQuizComponent implements OnInit {
       setTimeout(() => {
         this.showError = false;
       }, 3500);
+    } else {
+      this.router.navigate(['/dashboard/createQuestions', {
+        title: this.formGroup.get('title').value,
+        description: this.formGroup.get('description').value,
+        category: this.formGroup.get('category').value,
+      }]);
     }
   }
 

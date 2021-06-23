@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
 import { CreateQuizComponent } from './create-quiz.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('CreateQuizComponent', () => {
   let component: CreateQuizComponent;
@@ -11,7 +12,10 @@ describe('CreateQuizComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ CreateQuizComponent ],
-      imports: [IonicModule.forRoot()],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule
+      ],
       providers: [FormBuilder]
     }).compileComponents();
 

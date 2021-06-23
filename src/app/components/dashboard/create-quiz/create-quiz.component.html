@@ -25,7 +25,7 @@
                 placeholder="Descripción"></textarea>
             </div>
             <div class="form-group mb-3">
-              <ion-select formControlName="category" class="title">
+              <ion-select placeholder="Seleccione categoría" formControlName="category" class="title">
                 <ion-select-option *ngFor="let category of categoryCollection" [value]="category">{{category}}</ion-select-option>
               </ion-select>
             </div>
