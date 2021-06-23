@@ -1,0 +1,49 @@
+.input-question {
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.background-item {
+    background-color: #121d2d;
+    border-radius: 20px;
+    height: 140px;
+    width: 100%;
+}
+
+.title-seconds-points {
+    font-size: 23px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.seconds-points {
+    font-weight: bold;
+    color: white;
+}
+
+.sumMinus {
+    color: white;
+    background-color: #273346;
+    border-radius: 100px;
+    padding: 4px;
+}
+
+.form-range {
+    padding: 0px 20px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background: white;
+}
+
+.input-answer {
+    font-family: 'Montserrat', sans-serif;
+    padding: 1rem;
+    font-size: 1rem;
+}
+
+ion-icon {
+    font-size: 31px;
+}

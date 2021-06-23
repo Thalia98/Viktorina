@@ -7,12 +7,16 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
 import { ListQuestionnairesComponent } from './list-questionnaires/list-questionnaires.component';
 import { SharedModule } from '../shared/shared.module';
+import { CreateQuestionComponent } from './create-question/create-question.component';
+import { ListQuestionComponent } from './list-question/list-question.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     ListQuestionnairesComponent,
     CreateQuizComponent,
+    CreateQuestionComponent,
+    ListQuestionComponent,
   ],
   imports: [
     CommonModule,
