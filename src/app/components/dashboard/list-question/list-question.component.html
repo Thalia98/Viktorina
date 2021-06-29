@@ -1,3 +1,36 @@
-<p>
-  list-question works!
-</p>
+<div class="row mt-3" *ngIf="collectionQuestions.length > 0">
+  <div class="col-lg-8 offset-lg-2">
+    <div *ngFor="let question of collectionQuestions let i = index" class="card mb-3">
+      <div class="card-body text-center">
+        <p class="title-question">{{question.title}}</p>
+        <div class="row">
+          <div class="col-6">
+            <p>
+              <span class="badge bg-dark">{{question.second}}s</span>
+            </p>
+          </div>
+          <div class="col-6">
+            <p>
+              <span class="badge bg-dark">{{question.point}}pts</span>
+            </p>
+          </div>
+        </div>
+        <ul class="list-group">
+          <li [ngClass]="{'correct-answer': answer.isCorrect}" *ngFor="let answer of question.collectionAnswer"
+            class="list-group-item">
+            {{answer.description}}
+          </li>
+        </ul>
+
+        <div class="mt-2">
+          <ion-icon name="trash-outline" class="trash-icon" (click)="remove(i)"></ion-icon>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-12 text-center">
+        <button class="btn-secondary w-75 p-3 title">FINALIZAR</button>
+      </div>
+    </div>
+  </div>
+</div>

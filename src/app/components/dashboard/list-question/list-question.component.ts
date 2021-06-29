@@ -13,12 +13,17 @@ export class ListQuestionComponent implements OnInit {
 
   constructor(
     private quizService: QuizService,
-  ) { 
+  ) {
     this.quizService.getQuestions().subscribe(res => {
       this.collectionQuestions.push(res);
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
+
+  remove(index) {
+    this.collectionQuestions.splice(index, 1);
+  }
 
 }

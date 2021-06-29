@@ -87,6 +87,18 @@ export class CreateQuestionComponent implements OnInit {
     return allIncorrect;
   }
 
+  areCorrectAnswerDescriptionNull() {
+    let correctAnswerDescriptionNull = false;
+
+    this.collectionAnswer.forEach(answer => {
+      if (this.formGroup.get(answer).get('isCorrect').value === true && !this.formGroup.get(answer).get('title').value) {
+        correctAnswerDescriptionNull = true;
+      }
+    });
+
+    return correctAnswerDescriptionNull;
+  }
+
   error() {
     this.showError = true;
 
@@ -116,7 +128,7 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   sumMinusSeconds(operation) {
-    if (this.seconds >= 5) {
+    if ((this.seconds + operation) <= 4) {
       return;
     }
 
@@ -179,7 +191,7 @@ export class CreateQuestionComponent implements OnInit {
     if (this.formGroup.invalid) {
       this.errorMessage = ERROR_FORM.ERROR_DATA;
       this.error();
-    } else if (this.areAllAnswerIncorrect()) {
+    } else if (this.areAllAnswerIncorrect() || this.areCorrectAnswerDescriptionNull()) {
       this.errorMessage = ERROR_FORM.ERROR_CORRECT_ANSWER;
       this.error();
     } else {
