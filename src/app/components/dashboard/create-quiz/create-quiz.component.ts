@@ -1,3 +1,4 @@
+import { QuizService } from './../../../services/quiz.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -22,18 +23,27 @@ export class CreateQuizComponent implements OnInit {
     'Cultura general'
   ];
 
+  nombreArchivo;
+  urlImage;
+
   constructor(
     public formBuilder: FormBuilder,
     private router: Router,
+    private quizService: QuizService
   ) {
     this.formGroup = this.formBuilder.group({
       title: ['', Validators.required],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      file: [],
     });
   }
 
   ngOnInit() { }
+
+  public changeFile(event) {
+    this.quizService.file = event.target.files[0];
+  }
 
   next() {
     if (this.formGroup.invalid) {
@@ -43,11 +53,11 @@ export class CreateQuizComponent implements OnInit {
         this.showError = false;
       }, 3500);
     } else {
-      this.router.navigate(['/dashboard/createQuestions', {
-        title: this.formGroup.get('title').value,
-        description: this.formGroup.get('description').value,
-        category: this.formGroup.get('category').value,
-      }]);
+      this.quizService.title = this.formGroup.get('title').value;
+      this.quizService.description = this.formGroup.get('description').value;
+      this.quizService.category = this.formGroup.get('category').value;
+
+      this.router.navigate(['/dashboard/createQuestions']);
     }
   }
 

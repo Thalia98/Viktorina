@@ -23,7 +23,6 @@ export class CreateQuestionComponent implements OnInit {
   collectionAnswerModel: Answer[] = [];
 
   constructor(
-    private route: ActivatedRoute,
     public formBuilder: FormBuilder,
     private quizService: QuizService
   ) {
@@ -51,11 +50,6 @@ export class CreateQuestionComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.title = params.title;
-      this.description = params.description;
-      this.category = params.category;
-    });
   }
 
   get seconds() {

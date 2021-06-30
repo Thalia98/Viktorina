@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { ListQuestionnairesComponent } from './list-questionnaires.component';
 
@@ -14,6 +15,7 @@ describe('ListQuestionnairesComponent', () => {
       imports: [
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
+        AngularFirestoreModule
       ],
     }).compileComponents();
 
