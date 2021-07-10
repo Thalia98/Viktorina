@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     private toastr: ToastrService,
     private firebaseManagementService: FirebaseManagementService,
     private router: Router,
-    private authGuardService: AuthenticationService
+    private authGuardService: AuthenticationService,
   ) {
     this.formGroup = this.formBuilder.group({
       user: ['', [Validators.required, Validators.email]],
@@ -31,7 +31,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() { 
+  }
 
   login() {
     this.loading = true;
@@ -42,7 +43,7 @@ export class LoginComponent implements OnInit {
       if(res.user?.emailVerified){
         this.setUserToLocalStorage(res.user);
         this.authGuardService.login();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
       } else {
         this.router.navigate(['/verify']);
       }

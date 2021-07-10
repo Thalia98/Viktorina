@@ -17,7 +17,7 @@
         <div class="card-body">
           <form [formGroup]="formGroup">
             <div class="form-group mb-3">
-              <input class="file-input" type="file" formControlName="file" (change)="changeFile($event)">
+              <input class="file-input" type="file" class="mw-100" formControlName="file" (change)="changeFile($event)">
             </div>
             <div class="form-group mb-3">
               <input formControlName="title" type="text" class="input form-control form-control-lg"
@@ -30,6 +30,11 @@
             <div class="form-group mb-3">
               <ion-select placeholder="Seleccione categoría" formControlName="category" class="title">
                 <ion-select-option *ngFor="let category of categoryCollection" [value]="category">{{category}}</ion-select-option>
+              </ion-select>
+            </div>
+            <div class="form-group mb-3">
+              <ion-select placeholder="Seleccione el nivel" formControlName="level" class="title">
+                <ion-select-option *ngFor="let level of levelCollection" [value]="level">{{level}}</ion-select-option>
               </ion-select>
             </div>
           </form>

@@ -12,6 +12,7 @@ export class QuizService {
     title: string;
     description: string;
     category: string;
+    level: string;
     urlImage: string;
     file: [];
 
@@ -38,5 +39,13 @@ export class QuizService {
 
     referenceCloudStorage(nombreArchivo: string) {
         return this.storage.ref(nombreArchivo);
+    }
+
+    getQuestionnaireByUser(uid): Observable<any> {
+        return this.firestore.collection('Questionnaries', ref => ref.where('uid', '==', uid)).snapshotChanges();
+    }
+
+    getAllQuestionnaires(): Observable<any> {
+        return this.firestore.collection('Questionnaries').snapshotChanges();
     }
 }

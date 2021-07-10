@@ -1,5 +1,10 @@
+<div *ngIf="loading" class="spinner-backdrop align-spinner-without-container">
+    <app-spinner></app-spinner>
+</div>
+<div *ngIf="loading" class="backdrop"></div>
+
 <ion-searchbar placeholder=""></ion-searchbar>
-<div >
+<div>
     <ion-button class="button-filter">
         <ion-icon slot="start" src="../../../../assets/icon/order.svg"></ion-icon>
         Ordenar
@@ -15,19 +20,19 @@
 </div>
 
 <ion-list style="overflow: scroll; padding-top: 0" class="mt-4">
-    <ion-item *ngFor="let elemento of lista" class="item-list animated fadeInLeft background-white mb-4">
-        <div style="display: flex;">
-            <ion-icon name="megaphone" style="width: 100px;"></ion-icon>
-
+    <ion-item *ngFor="let questionnaire of collectionQuestionnaire"
+        class="item-list animated fadeInLeft background-white mb-4">
+        <div style="display: flex; padding: 10px 0px 10px 0px;">
+            <img [src]="questionnaire.urlImage" style="width: 42%; height: 42%;">
             <div>
-                <h5><strong>{{elemento.titulo}}</strong></h5>
+                <h5><strong>{{questionnaire.title}}</strong></h5>
 
                 <ion-row>
                     <ion-col>
                         <strong>Nivel:</strong>
                     </ion-col>
                     <ion-col>
-                        Intermedio
+                        {{questionnaire.level}}
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -35,7 +40,7 @@
                         <strong>Categoria:</strong>
                     </ion-col>
                     <ion-col>
-                        Lenguaje programación
+                        {{questionnaire.category}}
                     </ion-col>
                 </ion-row>
                 <ion-row>
@@ -43,7 +48,8 @@
                         <strong>Tiempo</strong>
                     </ion-col>
                     <ion-col>
-                        10min
+                        {{questionnaire.totalTime}}<span *ngIf="questionnaire.isSeconds">s</span><span
+                            *ngIf="!questionnaire.isSeconds">min</span>
                     </ion-col>
                 </ion-row>
             </div>

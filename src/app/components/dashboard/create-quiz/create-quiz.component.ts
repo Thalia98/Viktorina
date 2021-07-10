@@ -23,6 +23,12 @@ export class CreateQuizComponent implements OnInit {
     'Cultura general'
   ];
 
+  levelCollection = [
+    'Principiante',
+    'Intermedio',
+    'Difícil'
+  ];
+
   nombreArchivo;
   urlImage;
 
@@ -35,11 +41,14 @@ export class CreateQuizComponent implements OnInit {
       title: ['', Validators.required],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      level: ['', Validators.required],
       file: [],
     });
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.quizService.file = null;
+   }
 
   public changeFile(event) {
     this.quizService.file = event.target.files[0];
@@ -56,6 +65,7 @@ export class CreateQuizComponent implements OnInit {
       this.quizService.title = this.formGroup.get('title').value;
       this.quizService.description = this.formGroup.get('description').value;
       this.quizService.category = this.formGroup.get('category').value;
+      this.quizService.level = this.formGroup.get('level').value;
 
       this.router.navigate(['/dashboard/createQuestions']);
     }

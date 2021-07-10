@@ -3,7 +3,7 @@ import { Questionnaire } from './../../models/Questionnaire';
 import { Component, OnInit } from '@angular/core';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Question } from '../../models/Question';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -17,7 +17,12 @@ export class ListQuestionComponent implements OnInit {
   title: string;
   description: string;
   category: string;
+  level: string;
+  totalTime: number = 0;
+  totalTimeSeconds: number = 0;
+  isSeconds: boolean = false;
   file;
+  loading: boolean = false;
 
   constructor(
     private quizService: QuizService,
@@ -31,12 +36,13 @@ export class ListQuestionComponent implements OnInit {
     this.title = this.quizService.title;
     this.description = this.quizService.description;
     this.category = this.quizService.category;
+    this.level = this.quizService.level;
     this.file = this.quizService.file;
   }
 
   ngOnInit() {
     if (this.title === '' || this.description === '') {
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
     }
   }
 
@@ -49,15 +55,40 @@ export class ListQuestionComponent implements OnInit {
       let reference = this.quizService.referenceCloudStorage(this.file.name);
       reference.getDownloadURL().subscribe((URL) => {
         this.quizService.urlImage = URL;
-        this.finalize();
+        this.saveQuestionnaire();
       });
-    }).catch(error => {
-      console.log(error);
-      this.finalize();
-    })
+    }).catch(() => {
+      this.toastr.error('Upps', 'Ha surgido un error subiendo la imagen');
+      this.saveQuestionnaire();
+    });
   }
 
   finalize() {
+    this.calculateTotalTime();
+    if (this.file) {
+      this.uploadImage();
+    } else {
+      this.saveQuestionnaire();
+    }
+  }
+
+  calculateTotalTime() {
+    this.collectionQuestions.forEach(question => {
+      this.totalTime += question.second / 60;
+      this.totalTimeSeconds += question.second;
+    });
+
+    this.totalTime = Math.round(this.totalTime);
+
+    if(this.totalTime === 0) {
+      this.totalTime = this.totalTimeSeconds;
+      this.isSeconds = true;
+    }
+  }
+
+  saveQuestionnaire() {
+    this.loading = true;
+
     let user: User = JSON.parse(localStorage.getItem('user'));
 
     let questionnaire: Questionnaire = {
@@ -68,17 +99,19 @@ export class ListQuestionComponent implements OnInit {
       collectionQuestions: this.collectionQuestions,
       numberQuestions: this.collectionQuestions.length,
       createDate: new Date(),
-      urlImage: this.quizService.urlImage
+      urlImage: this.quizService.urlImage ? this.quizService.urlImage : '',
+      level: this.level,
+      totalTime: this.totalTime,
+      isSeconds: this.isSeconds
     };
 
-    this.quizService.saveQuestionnaire(questionnaire).then(res => {
-      console.log(res);
-    }).catch(error => {
-
+    this.quizService.saveQuestionnaire(questionnaire).then(() => {
+      this.toastr.success('Cuestionario registrado')
+      this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
+    }).catch(() => {
+      this.loading = false;
+      this.toastr.error('Upps', 'Ha surgido un error al crear el cuestionario');
     });
-
-    this.toastr.success('Cuestionario registrado')
-    this.router.navigate(['/dashboard']);
   }
 
 }

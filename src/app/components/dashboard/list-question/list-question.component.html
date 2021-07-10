@@ -1,3 +1,8 @@
+<div *ngIf="loading" style="top: 0; right: 0;" class="spinner-backdrop align-spinner-without-container">
+  <app-spinner></app-spinner>
+</div>
+  <div *ngIf="loading" class="backdrop" style="top: 0; right: 0;"></div>
+
 <div class="row mt-3" *ngIf="collectionQuestions.length > 0">
   <div class="col-lg-8 offset-lg-2">
     <div *ngFor="let question of collectionQuestions let i = index" class="card mb-3">
@@ -29,7 +34,7 @@
     </div>
     <div class="row mt-3">
       <div class="col-12 text-center">
-        <button class="btn-secondary w-75 p-3 title" (click)="uploadImage()">FINALIZAR</button>
+        <button class="btn-secondary w-75 p-3 title" (click)="finalize()">FINALIZAR</button>
       </div>
     </div>
   </div>

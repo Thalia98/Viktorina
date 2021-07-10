@@ -4,6 +4,8 @@ import { IonicModule } from '@ionic/angular';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 import { ListQuestionnairesComponent } from './list-questionnaires.component';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
 
 describe('ListQuestionnairesComponent', () => {
   let component: ListQuestionnairesComponent;
@@ -15,6 +17,7 @@ describe('ListQuestionnairesComponent', () => {
       imports: [
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
+        AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule
       ],
     }).compileComponents();
