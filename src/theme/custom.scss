@@ -1,6 +1,11 @@
 ion-app {
-    --ion-background-color:  linear-gradient(to left, #136a8a, #267871) !important;
-    background:  linear-gradient(to left, #136a8a, #267871) !important;
+    // --ion-background-color:  linear-gradient(to left, #136a8a, #267871) !important;
+    // background:  linear-gradient(to left, #136a8a, #267871) !important;
+
+    --ion-background-color: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+
+
 }
 
 .btn-main{
@@ -67,6 +72,11 @@ ion-app {
     height: 100%;
 }
 
+.trash-icon {
+    color: #dc3545;
+    font-size: 27px;
+}
+
 ion-toolbar {
     --background: #343a40!important;
     ion-title {
@@ -103,4 +113,46 @@ ion-searchbar {
 
 .container {
     overflow-y: scroll;
+}
+
+.add-button {
+    z-index: 1;
+    background-color: #00B176;
+    border-radius: 100px;
+    height: 59px;
+    width: 59px;
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    ion-icon{
+        font-size: 33px;
+        color: white;
+        margin-top: 12px;
+    }
+}
+
+.background-white {
+    --background: aliceblue;
+}
+
+.correct-answer {
+    color: white !important;
+    background-color: #00B176 !important;
+}
+
+.date {
+    color: rgb(102, 102, 102);
+    font-style: italic;
+}
+
+.item-list {
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+ion-item:last-child {
+    margin-bottom: 73px !important;
 }

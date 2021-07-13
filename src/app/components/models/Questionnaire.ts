@@ -12,6 +12,7 @@ export class Questionnaire {
     level: string;
     totalTime: number;
     isSeconds: boolean;
+    id?;
 
     constructor(title, collectionQuestions, description, uid, numberQuestions, createDate, category, urlImage, level, totalTime, isSeconds) {
         this.title = title;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
 import { ERROR_FORM } from '../../../globalValues';
 import { Answer } from '../../models/Answer';

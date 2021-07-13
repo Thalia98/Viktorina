@@ -48,4 +48,20 @@ export class QuizService {
     getAllQuestionnaires(): Observable<any> {
         return this.firestore.collection('Questionnaries').snapshotChanges();
     }
+
+    getQuestionnaire(id): Observable<any> {
+        return this.firestore.collection('Questionnaries').doc(id).get();
+    }
+
+    removeQuestionnaire(id): Promise<any> {
+        return this.firestore.collection('Questionnaries').doc(id).delete();
+    }
+
+    getImage(urlImage) {
+        if (urlImage) {
+          return urlImage;
+        } else {
+          return 'assets/icon/sin_foto.png';
+        }
+      }
 }

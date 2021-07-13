@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       if(res.user?.emailVerified){
         this.setUserToLocalStorage(res.user);
         this.authGuardService.login();
-        this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
+        this.router.navigate(['dashboard/myQuestionnaires']);
       } else {
         this.router.navigate(['/verify']);
       }

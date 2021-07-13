@@ -28,7 +28,7 @@ export class AppComponent {
     });
     this.authenticationService.authenticationState.subscribe(state => {
       if (state) {
-        this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
+        this.router.navigate(['dashboard/myQuestionnaires']);
       } else {
         this.router.navigate(['/']);
       }

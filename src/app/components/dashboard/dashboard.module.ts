@@ -1,3 +1,5 @@
+import { ShowQuestionnaireComponent } from './show-questionnaire/show-questionnaire.component';
+import { MyQuestionnairesComponent } from './my-questionnaires/my-questionnaires.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
 import { IonicModule } from '@ionic/angular';
 import { NgModule } from '@angular/core';
@@ -17,6 +19,8 @@ import { ListQuestionComponent } from './list-question/list-question.component';
     CreateQuizComponent,
     CreateQuestionComponent,
     ListQuestionComponent,
+    MyQuestionnairesComponent,
+    ShowQuestionnaireComponent,
   ],
   imports: [
     CommonModule,

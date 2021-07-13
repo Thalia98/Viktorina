@@ -7,4 +7,14 @@ export const ERROR_FORM = {
     ERROR_DATA: 'FALTAN DATOS POR RELLENAR'
 };
 
+export const ALERT_TEXT = {
+    HEADER_REMOVE_QUESTIONNAIRE: '¡ATENCION! Está apunto de eliminar un cuestionario',
+    MESSAGE_REMOVE_QUESTIONNAIRE: '¿Está seguro/a de querer eliminar el querionario "',
+};
+
+export const RESPONSES = {
+    KO: 'ko',
+    OK: 'ok'
+}
+
 export const TOKEN_KEY = '6hrFDATxrG9w14QY9wwnmVhLE0Wg6LIvwOwUaxz761m1JdsfsdfsdAS5xhSkw0_MQz6bpcJnrFUDwp5lPPFC157dHxbkKlDiQ9XY3ZIP8zAGCsS8ruasdasKjIaIargX';

@@ -15,15 +15,11 @@
     </ion-button>
 </div>
 
-<div *ngIf="isMyQuestionnaires" class="add-button" routerLink="/dashboard/createQuiz">
-    <ion-icon name="add-outline"></ion-icon>
-</div>
-
 <ion-list style="overflow: scroll; padding-top: 0" class="mt-4">
     <ion-item *ngFor="let questionnaire of collectionQuestionnaire"
         class="item-list animated fadeInLeft background-white mb-4">
         <div style="display: flex; padding: 10px 0px 10px 0px;">
-            <img [src]="questionnaire.urlImage" style="width: 42%; height: 42%;">
+            <img [src]="quizService.getImage(questionnaire.urlImage)" style="width: 42%; height: 42%;">
             <div>
                 <h5><strong>{{questionnaire.title}}</strong></h5>
 
@@ -52,7 +48,16 @@
                             *ngIf="!questionnaire.isSeconds">min</span>
                     </ion-col>
                 </ion-row>
+                <ion-row>
+                    <ion-col>
+                       <ion-icon name="play-circle" class="play-icon" [routerLink]="['/dashboard/showQuestionnaire', questionnaire.id]"></ion-icon>
+                   </ion-col>
+                </ion-row>
             </div>
         </div>
     </ion-item>
 </ion-list>
+
+<div *ngIf="collectionQuestionnaire.length == 0">
+    <p>No hay nada que mostrar</p>
+</div>

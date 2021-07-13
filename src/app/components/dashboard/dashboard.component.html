@@ -4,17 +4,21 @@
     </ion-buttons>
 </ion-toolbar>
 
-<ion-menu side="start" menuId="first" contentId="main">
+<ion-menu contentId="main" type="overlay">
     <ion-header>
-        <ion-toolbar>
+        <ion-toolbar style="--min-height: 40px;">
             <ion-title>¡Hola de nuevo!</ion-title>
         </ion-toolbar>
     </ion-header>
-    <ion-content class="menu">
-        <ion-list class="white-color-list">
-            <ion-item (click)="goDashboard(true)">Mis cuestionarios</ion-item>
-            <ion-item (click)="goDashboard(false)">Todos los cuestionarios</ion-item>
-            <ion-item (click)="logOut()">Cerrar sesión</ion-item>
+    <ion-content>
+        <ion-list>
+            <ion-menu-toggle auto-hide="false">
+                <ion-list class="white-color-list">
+                    <ion-item routerLink="/dashboard/myQuestionnaires">Mis cuestionarios</ion-item>
+                    <ion-item routerLink="/dashboard">Todos los cuestionarios</ion-item>
+                    <ion-item (click)="logOut()">Cerrar sesión</ion-item>
+                </ion-list>
+            </ion-menu-toggle>
         </ion-list>
     </ion-content>
 </ion-menu>

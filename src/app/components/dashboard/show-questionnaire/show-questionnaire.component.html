@@ -1,0 +1,36 @@
+<div *ngIf="loading" class="spinner-backdrop align-spinner-without-container">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="loading" class="backdrop"></div>
+
+<div class="container mt-3">
+  <div class="card">
+    <div class="card-body text-center">
+      <h2 class="title">{{ questionnaire?.title | uppercase }}</h2>
+      <h4>{{ questionnaire?.description }}</h4>
+    </div>
+  </div>
+
+  <ion-row class="mt-5"  *ngFor="let question of questionnaire?.collectionQuestions">
+    <ion-col>
+      <div class="card">
+        <div class="card-body text-center">
+          <h4 class="title">{{ question?.title }}</h4>
+          <ion-row class="mt-3">
+            <ion-col>
+              <p><span class="badge bg-dark">{{ question.second }}</span></p>
+            </ion-col>
+            <ion-col>
+              <p><span class="badge bg-dark">{{ question.point }}</span></p>
+            </ion-col>
+          </ion-row>
+          <ul class="list-group">
+            <li [ngClass]="{'correct-answer': answer?.isCorrect}" *ngFor="let answer of question?.collectionAnswer" class="list-group-item">
+              {{ answer?.description }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </ion-col>
+  </ion-row>
+</div>

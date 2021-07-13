@@ -27,9 +27,4 @@ export class DashboardComponent implements OnInit {
     this.menuCtrl.close();
     this.router.navigate(['/']);
   }
-
-  goDashboard(isMyQuestionnaires) {
-    this.router.navigate(['dashboard', { isMyQuestionnaires: isMyQuestionnaires }]);
-  }
-
 }

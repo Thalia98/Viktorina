@@ -42,7 +42,7 @@ export class ListQuestionComponent implements OnInit {
 
   ngOnInit() {
     if (this.title === '' || this.description === '') {
-      this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
+      this.router.navigate(['dashboard/myQuestionnaires']);
     }
   }
 
@@ -107,7 +107,7 @@ export class ListQuestionComponent implements OnInit {
 
     this.quizService.saveQuestionnaire(questionnaire).then(() => {
       this.toastr.success('Cuestionario registrado')
-      this.router.navigate(['dashboard', { isMyQuestionnaires: true }]);
+      this.router.navigate(['dashboard/myQuestionnaires']);
     }).catch(() => {
       this.loading = false;
       this.toastr.error('Upps', 'Ha surgido un error al crear el cuestionario');
