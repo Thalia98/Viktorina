@@ -29,7 +29,6 @@ export class ShowQuestionnaireComponent implements OnInit {
     this.loading = true;
     this.quizService.getQuestionnaire(this.id).subscribe(questionnaire => {
       this.loading = false;
-      console.log(questionnaire.data());
       this.questionnaire = questionnaire.data();
     }, error => {
       this.loading = false;

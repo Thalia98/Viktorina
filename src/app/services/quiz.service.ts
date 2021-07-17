@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable, Subject } from 'rxjs';
 import { Question } from '../components/models/Question';
+import { Questionnaire } from '../components/models/Questionnaire';
 
 @Injectable({
     providedIn: 'root'
@@ -15,6 +16,8 @@ export class QuizService {
     level: string;
     urlImage: string;
     file: [];
+    questionnaire: Questionnaire;
+    isInProcess: boolean = false;
 
     constructor(
         private firestore: AngularFirestore,

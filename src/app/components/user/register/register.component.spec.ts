@@ -40,7 +40,8 @@ describe('RegisterComponent', () => {
     component = fixture.componentInstance;
 
     component.formGroup = component.formBuilder.group({
-      user: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
+      user: ['', [Validators.required, Validators.minLength(6)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       passwordRepeat: ['', Validators.required],
     }, {
@@ -55,8 +56,8 @@ describe('RegisterComponent', () => {
   });
 
   describe('control getters', () => {
-    it('should return user control', () => {
-      const control = component.formGroup.controls['user'];
+    it('should return email control', () => {
+      const control = component.formGroup.controls['email'];
       expect(control).toBeTruthy();
     });
 

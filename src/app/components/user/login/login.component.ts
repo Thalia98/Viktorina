@@ -7,6 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FirebaseManagementService } from 'src/app/services/firebase-management.service';
 import { ERROR_FORM } from '../../../globalValues';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
     private firebaseManagementService: FirebaseManagementService,
     private router: Router,
     private authGuardService: AuthenticationService,
+    private userService: UserService,
   ) {
     this.formGroup = this.formBuilder.group({
       user: ['', [Validators.required, Validators.email]],
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  ngOnInit() { 
+  ngOnInit() {
   }
 
   login() {
@@ -40,8 +42,8 @@ export class LoginComponent implements OnInit {
     this.afAuth.signInWithEmailAndPassword(this.formGroup.get('user').value, this.formGroup.get('password').value).then(res => {
       this.loading = false;
 
-      if(res.user?.emailVerified){
-        this.setUserToLocalStorage(res.user);
+      if (res.user?.emailVerified) {
+        this.getUser(res.user);
         this.authGuardService.login();
         this.router.navigate(['dashboard/myQuestionnaires']);
       } else {
@@ -54,12 +56,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  setUserToLocalStorage(user) {
-    const userInterface: User = {
-      uid: user.uid,
-      email: user.email      
-    }
+  getUser(user) {
+    this.userService.getUser(user.uid).subscribe(res => {
+      this.loading = false;
+      const userInterface: User = {
+        ...res[0].payload.doc.data()
+      };
 
+      this.setUserToLocalStorage(userInterface);
+    });
+  }
+
+  setUserToLocalStorage(user) {
     localStorage.setItem('user', JSON.stringify(user));
   }
 

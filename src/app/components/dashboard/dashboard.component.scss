@@ -21,3 +21,19 @@
       --background: #515962;
   }
 
+.list-menu {
+    background: #3f414e;
+    padding: 0;
+    ion-item {
+        --background: #3f414e;
+        color: blanchedalmond;
+        --border-style: none !important;
+        ion-icon {
+            color: blanchedalmond;
+        }
+    }
+}
+
+.selected-page {
+    --background: #3b3b47 !important;
+}

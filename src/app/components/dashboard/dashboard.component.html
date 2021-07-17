@@ -7,19 +7,23 @@
 <ion-menu contentId="main" type="overlay">
     <ion-header>
         <ion-toolbar style="--min-height: 40px;">
-            <ion-title>¡Hola de nuevo!</ion-title>
+            <ion-title>¡Hola {{ user.username }}!</ion-title>
         </ion-toolbar>
     </ion-header>
-    <ion-content>
-        <ion-list>
-            <ion-menu-toggle auto-hide="false">
-                <ion-list class="white-color-list">
-                    <ion-item routerLink="/dashboard/myQuestionnaires">Mis cuestionarios</ion-item>
-                    <ion-item routerLink="/dashboard">Todos los cuestionarios</ion-item>
-                    <ion-item (click)="logOut()">Cerrar sesión</ion-item>
-                </ion-list>
-            </ion-menu-toggle>
-        </ion-list>
+    <ion-content style="--background: #3f414e;">
+        <ion-menu-toggle auto-hide="false">
+            <ion-list class="list-menu">
+                <ion-item *ngFor="let page of pages; let i = index" (click)="openPage(page.page, i)"
+                    [ngClass]="{'selected-page': page.isSelected}">
+                    <ion-icon name="{{ page.icon }}" slot="start"></ion-icon>
+                    <ion-label>{{ page.title }}</ion-label>
+                </ion-item>
+                <ion-item (click)="logOut()">
+                    <ion-icon name="log-out-outline" slot="start"></ion-icon>
+                    <ion-label>Cerrar sesión</ion-label>
+                </ion-item>
+            </ion-list>
+        </ion-menu-toggle>
     </ion-content>
 </ion-menu>
 

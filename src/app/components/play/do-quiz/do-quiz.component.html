@@ -1,0 +1,25 @@
+<div class="container mt-3">
+  <div class="d-flex justify-content-center mt-3">
+    <h1 class="title counter">{{ getSeconds() }}</h1>
+  </div>
+  <ion-row class="mt-2">
+    <ion-col class="text-center">
+      <h3 class="title">{{ getTitle() }}</h3>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="text-center">
+      <ul class="list-group mt-3">
+        <li class="list-group-item animate__animated animate__fadeIn"
+          *ngFor="let answer of questionnaire?.collectionQuestions[indexQuestion].collectionAnswer; let i = index"
+          (click)="selectedAnswer(answer, i)"
+          [ngClass]="addClassOption(answer)">
+          {{answer.description}}
+        </li>
+      </ul>
+    </ion-col>
+  </ion-row>
+
+  <button (click)="next()" [disabled]="!selectedOption" class="btn btn-secondary mt-3 btn-accept">ACEPTAR</button>
+</div>

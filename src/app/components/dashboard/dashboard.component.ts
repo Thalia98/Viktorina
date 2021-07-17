@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MenuController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/User';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,6 +12,23 @@ import { MenuController } from '@ionic/angular';
 })
 export class DashboardComponent implements OnInit {
 
+  user: User;
+
+  pages = [
+    {
+      page: 'myQuestionnaires',
+      icon: 'clipboard-outline',
+      title: 'Mis cuestionarios',
+      isSelected: true
+    },
+    {
+      page: '',
+      icon: 'reader-outline',
+      title: 'Todos los cuestionarios',
+      isSelected: false
+    }
+  ];
+
   constructor(
     private afAuth: AngularFireAuth,
     private router: Router,
@@ -18,7 +36,9 @@ export class DashboardComponent implements OnInit {
     private menuCtrl: MenuController,
   ) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('user'));
+  }
 
   logOut() {
     this.afAuth.signOut();
@@ -26,5 +46,20 @@ export class DashboardComponent implements OnInit {
     localStorage.removeItem('user');
     this.menuCtrl.close();
     this.router.navigate(['/']);
+  }
+
+  removeSelected(index) {
+    this.pages.forEach((page, i) => {
+      if (index !== i) {
+        page.isSelected = false;
+      } else {
+        page.isSelected = true;
+      }
+    })
+  }
+
+  openPage(page, index) {
+    this.removeSelected(index);
+    this.router.navigate(['/dashboard/' + page]);
   }
 }

@@ -56,6 +56,9 @@
                  <ion-col>
                     <ion-icon name="eye" style="font-size: 27px;" [routerLink]="['/dashboard/showQuestionnaire', questionnaire.id]"></ion-icon>
                 </ion-col>
+                <ion-col>
+                    <ion-icon name="play-circle" class="play-icon" [routerLink]="['/play/initial-counter', questionnaire.id]"></ion-icon>
+                </ion-col>
                  <ion-col>
                     <ion-icon name="trash-outline" class="trash-icon" (click)="removeQuestionnaire(questionnaire)"></ion-icon>
                  </ion-col>

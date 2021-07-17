@@ -16,6 +16,7 @@ import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AppComponent } from './app.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { PlayModule } from './components/play/play.module';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     DashboardModule,
+    PlayModule
   ],
   providers: [
     {

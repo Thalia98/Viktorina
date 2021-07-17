@@ -8,17 +8,36 @@
       <h2 class="text-center title">Registrarse</h2>
       <form [formGroup]="formGroup">
         <div class="mb-3">
-          <input id="emailInput" [(ngModel)]="user" type="text" formControlName="user" class="form-control"
+          <input id="emailInput" [(ngModel)]="email" type="text" formControlName="email" class="form-control"
             placeholder="Email">
           <span
-            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')"
+            [hidden]="!formGroup.get('email')?.touched || formGroup.get('email')?.touched && !formGroup.get('email').hasError('required')"
             class="text-danger">
             <strong id="errorEmailRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
           </span>
           <span
-            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('email')"
+            [hidden]="!formGroup.get('email')?.touched || formGroup.get('email')?.touched && !formGroup.get('email').hasError('email')"
             class="text-danger">
             <strong id="errorEmail">{{errorFormText.ERROR_EMAIL}}</strong>
+          </span>
+        </div>
+        <div class="mb-3">
+          <input id="user" [(ngModel)]="user" type="text" formControlName="user" class="form-control"
+            placeholder="Usuario">
+          <span
+            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('required')"
+            class="text-danger">
+            <strong id="errorUsernameRequired">{{errorFormText.ERROR_REQUIRED}}</strong>
+          </span>
+          <span
+            [hidden]="!formGroup.get('user')?.touched || formGroup.get('user')?.touched && !formGroup.get('user').hasError('minlength')"
+            class="text-danger">
+            <strong id="errorUserMinLength">{{errorFormText.ERROR_MIN_LENGTH}}</strong>
+          </span>
+          <span
+            [hidden]="!showErrorUsername"
+            class="text-danger">
+            <strong id="errorUserMinLength">{{errorFormText.ERROR_USERNAME_REPEAT}}</strong>
           </span>
         </div>
         <div class="mb-3">
@@ -48,7 +67,7 @@
           </span>
         </div>
         <button id="goLogin" class="btn-secondary btn-lg" routerLink="/">Volver</button>
-        <button id="submitButton" (click)="register()" [disabled]="formGroup.invalid"
+        <button id="submitButton" (click)="checkUser()" [disabled]="formGroup.invalid"
           class="btn-primary btn-lg float-end">Aceptar</button>
       </form>
     </div>

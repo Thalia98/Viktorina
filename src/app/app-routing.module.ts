@@ -1,3 +1,4 @@
+import { PlayModule } from './components/play/play.module';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -15,6 +16,12 @@ const routes: Routes = [
     component: DashboardComponent,
     loadChildren: () => import('./components/dashboard/dashboard.module')
       .then(m => m.DashboardModule)
+  },
+  {
+    path: 'play',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./components/play/play.module')
+      .then(m => m.PlayModule)
   },
   {
     path: '**',

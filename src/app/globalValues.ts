@@ -4,7 +4,8 @@ export const ERROR_FORM = {
     ERROR_MIN_LENGTH: 'Debe de tener un mínimo de 6 carácteres',
     ERROR_NOT_SAME: 'Las contraseñas no coinciden',
     ERROR_CORRECT_ANSWER: 'SELECCIONE UNA RESPUESTA CORRECTA',
-    ERROR_DATA: 'FALTAN DATOS POR RELLENAR'
+    ERROR_DATA: 'FALTAN DATOS POR RELLENAR',
+    ERROR_USERNAME_REPEAT: 'El nombre de usuario ya está en uso.'
 };
 
 export const ALERT_TEXT = {

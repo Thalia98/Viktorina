@@ -5,24 +5,24 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { IonicModule } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 
-import { DashboardComponent } from './dashboard.component';
+import { InitialCounterComponent } from './initial-counter.component';
 
-describe('DashboardComponent', () => {
-  let component: DashboardComponent;
-  let fixture: ComponentFixture<DashboardComponent>;
+describe('InitialCounterComponent', () => {
+  let component: InitialCounterComponent;
+  let fixture: ComponentFixture<InitialCounterComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [DashboardComponent],
+      declarations: [ InitialCounterComponent ],
       imports: [
         IonicModule.forRoot(),
+        RouterTestingModule,
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFireAuthModule,
-        RouterTestingModule,
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(DashboardComponent);
+    fixture = TestBed.createComponent(InitialCounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));
