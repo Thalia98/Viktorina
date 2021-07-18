@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
+import { PAGES } from '../../../globalValues';
 
 @Component({
   selector: 'app-initial-counter',
@@ -32,7 +33,12 @@ export class InitialCounterComponent implements OnDestroy {
   ionViewWillEnter() {
     if (this.counter < 0) {
       this.isHidden = true;
-      this.router.navigate(['/dashboard']);
+
+      PAGES.forEach(page => {
+        if (page.isSelected) {
+          this.router.navigate(['/dashboard/' + page.page]);
+        }
+      });
     }
   }
 
@@ -50,7 +56,10 @@ export class InitialCounterComponent implements OnDestroy {
 
   getQuestionnaire() {
     this.quizService.getQuestionnaire(this.id).subscribe(questionnaire => {
-      this.quizService.questionnaire = questionnaire.data();
+      this.quizService.questionnaire = {
+        id: questionnaire.id,
+        ...questionnaire.data()
+      };
     });
   }
 

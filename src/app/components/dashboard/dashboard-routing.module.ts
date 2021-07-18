@@ -1,3 +1,5 @@
+import { RankingComponent } from './ranking/ranking.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 import { MyQuestionnairesComponent } from './my-questionnaires/my-questionnaires.component';
 import { ShowQuestionnaireComponent } from './show-questionnaire/show-questionnaire.component';
 import { CreateQuestionComponent } from './create-question/create-question.component';
@@ -12,6 +14,8 @@ const routes: Routes = [
   { path: 'createQuiz', component: CreateQuizComponent},
   { path: 'createQuestions', component: CreateQuestionComponent},
   { path: 'showQuestionnaire/:id', component: ShowQuestionnaireComponent},
+  { path: 'statistics/:id', component: StatisticsComponent},
+  { path: 'ranking/:id', component: RankingComponent},
 ];
 
 @NgModule({

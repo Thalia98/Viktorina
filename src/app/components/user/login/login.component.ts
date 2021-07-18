@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
   getUser(user) {
     this.userService.getUser(user.uid).subscribe(res => {
       this.loading = false;
+
       const userInterface: User = {
         ...res[0].payload.doc.data()
       };

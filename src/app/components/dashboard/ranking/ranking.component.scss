@@ -1,0 +1,40 @@
+.title-header {
+    background: #ebb80d;
+    height: 82px;
+}
+
+.col-header {
+    align-self: center;
+
+    ion-icon {
+        font-size: 22px;
+    }
+}
+
+.card-body {
+    background: #2e2f30;
+    height: 100vh;;
+}
+
+.card {
+    border-radius: 0 !important;
+}
+
+.target {
+    background: white;
+    height: 45px;
+    margin-top: 7px;
+}
+
+.border-right {
+    border-right: solid 3px #ebb80d;
+}
+
+.border-left {
+    border-left: solid 3px #ebb80d;
+}
+
+.border-target {
+    border-top: solid 3px #ebb80d;
+    border-bottom: solid 3px #ebb80d;
+}

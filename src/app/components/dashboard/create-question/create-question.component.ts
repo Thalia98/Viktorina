@@ -159,7 +159,7 @@ export class CreateQuestionComponent implements OnInit {
   reset() {
     this.formGroup.patchValue({
       title: '',
-      seconds: 10,
+      seconds: 20,
       points: 1000,
       answer1: {
         title: '',

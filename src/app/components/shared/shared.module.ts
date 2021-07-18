@@ -9,12 +9,12 @@ import { FormBuilder } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   exports: [
     FormsModule,
     ReactiveFormsModule,
-    SpinnerComponent
+    SpinnerComponent,
   ],
   providers: [FormBuilder],
 })

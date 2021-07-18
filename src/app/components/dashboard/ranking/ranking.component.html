@@ -1,0 +1,33 @@
+<div *ngIf="loading" class="spinner-backdrop align-spinner-without-container">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="loading" class="backdrop"></div>
+
+<div>
+  <ion-row class="title-header text-center title">
+    <ion-col class="col-header">
+      <ion-icon name="star"></ion-icon>
+    </ion-col>
+    <ion-col class="col-header">
+      <h1>RANKING</h1>
+    </ion-col>
+    <ion-col class="col-header">
+      <ion-icon name="star"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <div class="card card-body">
+    <ion-row *ngFor="let answer of collectionUserResponse.slice(0, 3); let i = index" class="text-center title mb-3">
+      <ion-col>
+        <img *ngIf="i === 0" src="assets/icon/winner.svg" style="width: 62%; height: 62%;">
+        <p class="text-white" style="font-size: 28px;" *ngIf="i !== 0">{{ i + 1 }}</p>
+      </ion-col>
+      <ion-col class="target border-target border-left">
+        <p>{{ answer.nameUser }}</p>
+      </ion-col>
+      <ion-col class="target border-target border-right">
+        <p>{{ answer.totalPoints }} pts</p>
+      </ion-col>
+    </ion-row>
+  </div>
+</div>

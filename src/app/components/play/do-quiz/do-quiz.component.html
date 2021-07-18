@@ -1,3 +1,8 @@
+<div *ngIf="loading" style="top: 0; right: 0;" class="spinner-backdrop align-spinner-without-container">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="loading" class="backdrop" style="top: 0; right: 0;"></div>
+
 <div class="container mt-3">
   <div class="d-flex justify-content-center mt-3">
     <h1 class="title counter">{{ getSeconds() }}</h1>

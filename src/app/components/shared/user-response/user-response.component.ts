@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ActivatedRoute, Router } from '@angular/router';
+import { QuizService } from 'src/app/services/quiz.service';
+import { PAGES } from '../../../globalValues';
 @Component({
   selector: 'app-user-response',
   templateUrl: './user-response.component.html',
@@ -7,8 +9,43 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserResponseComponent implements OnInit {
 
-  constructor() { }
+  id: string;
+  multiplayer: boolean = false;
+  loading = false;
+  questionnaireResponse: any;
 
-  ngOnInit() {}
+  constructor(
+    private quizService: QuizService,
+    private route: ActivatedRoute,
+    private router: Router,
+  ) {
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
+
+  ngOnInit() {
+    this.getUserResponse();
+  }
+
+  getUserResponse() {
+    this.loading = true;
+    this.quizService.getUserResponse(this.id).subscribe(res => {
+      this.loading = false;
+
+      this.questionnaireResponse = res.data();
+
+      console.log(this.questionnaireResponse);
+
+    }, error => {
+      this.loading = false;
+    });
+  }
+
+  back() {
+    PAGES.forEach(page => {
+      if (page.isSelected) {
+        this.router.navigate(['/dashboard/' + page.page]);
+      }
+    });
+  }
 
 }

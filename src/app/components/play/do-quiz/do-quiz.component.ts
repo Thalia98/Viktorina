@@ -2,8 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/interfaces/User';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Questionnaire } from '../../models/Questionnaire';
+import { PAGES } from '../../../globalValues';
 
 @Component({
   selector: 'app-do-quiz',
@@ -16,8 +18,16 @@ export class DoQuizComponent implements OnDestroy {
   indexQuestion: number = 0;
   setInterval: any;
   seconds: number = 0;
+  totalPoints: number = 0;
+  corrects: number = 0;
+  incorrects: number = 0;
+  totalSeconds: number = 0;
+
+  loading: boolean = false;
+
   selectedOption: any;
   IndexSelected: any;
+  collectionAnswerUser = [];
 
   constructor(
     private platform: Platform,
@@ -37,11 +47,22 @@ export class DoQuizComponent implements OnDestroy {
     this.playInitialCounter();
   }
 
+  ionViewWillEnter() {
+    if (this.seconds != 0) {
+      PAGES.forEach(page => {
+        if (page.isSelected) {
+          this.router.navigate(['/dashboard/' + page.page]);
+        }
+      });
+    }
+  }
+
+
   ionViewWillLeave() {
     this.subscription.unsubscribe();
     this.clearInterval();
   }
-  
+
   clearInterval() {
     clearInterval(this.setInterval);
   }
@@ -84,12 +105,100 @@ export class DoQuizComponent implements OnDestroy {
   }
 
   addAnswer() {
+    this.incrementAnswerCounter();
+
+    const userResponse = {
+      title: this.questionnaire.collectionQuestions[this.indexQuestion].title,
+      totalPoints: this.getPoints(),
+      seconds: this.getSecondsResponse(),
+      indexAnswerSelected: this.getSelectedIndex(),
+      collectionAnswer: this.questionnaire.collectionQuestions[this.indexQuestion].collectionAnswer,
+      totalSeconds: this.totalSeconds
+    };
+
+    this.collectionAnswerUser.push(userResponse);
+
+    this.selectedOption = undefined;
+    this.IndexSelected = undefined;
+
     if (this.questionnaire.collectionQuestions.length - 1 === this.indexQuestion) {
-      this.router.navigate(['play/answer-user']);
+      this.saveQuestionnaireAnswer();
     } else {
       this.indexQuestion++;
       this.seconds = this.questionnaire.collectionQuestions[this.indexQuestion].second;
     }
+  }
+
+  getPoints() {
+    const questionPoints = this.questionnaire.collectionQuestions[this.indexQuestion].point;
+
+    if (this.selectedOption === undefined) {
+      return 0;
+    }
+
+    if (this.selectedOption.isCorrect === true) {
+      this.totalPoints += questionPoints;
+      return questionPoints;
+    } else {
+      return 0;
+    }
+  }
+
+  getSecondsResponse() {
+    const secondsQuestion = this.questionnaire.collectionQuestions[this.indexQuestion].second;
+
+    if (this.selectedOption === undefined) {
+      this.totalSeconds += secondsQuestion;
+      
+      return 'No respondido';
+    } else {
+
+      const secondsAnswered = secondsQuestion - this.seconds;
+      this.totalSeconds += secondsAnswered;
+
+      return secondsAnswered.toString();
+    }
+  }
+
+  getSelectedIndex() {
+    if (this.selectedOption === undefined) {
+      return '';
+    } else {
+      return this.IndexSelected;
+    }
+  }
+
+  incrementAnswerCounter() {
+    if (this.selectedOption === undefined || !this.selectedOption?.isCorrect) {
+      this.incorrects++;
+    } else if (this.selectedOption?.isCorrect) {
+      this.corrects++;
+    }
+  }
+
+  saveQuestionnaireAnswer() {
+    this.loading = true;
+
+    let user: User = JSON.parse(localStorage.getItem('user'));
+
+    const questionnaireAnswer = {
+      id: this.questionnaire.id,
+      nameUser: user.username,
+      date: new Date(),
+      numberQuestions: this.questionnaire.numberQuestions,
+      corrects: this.corrects,
+      incorrects: this.incorrects,
+      totalPoints: this.totalPoints,
+      collectionAnswerUser: this.collectionAnswerUser
+    };
+
+    this.quizService.setResponseUser(questionnaireAnswer).then(res => {
+      this.loading = false;
+      this.router.navigate(['play/answer-user', res.id]);
+    }, error => {
+      this.loading = false;
+      this.router.navigate(['/dashboard']);
+    });
   }
 
 }

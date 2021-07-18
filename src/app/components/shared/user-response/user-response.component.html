@@ -1,3 +1,40 @@
-<p>
-  user-response works!
-</p>
+<div *ngIf="loading" style="top: 0; right: 0;" class="spinner-backdrop align-spinner-without-container">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="loading" class="backdrop" style="top: 0; right: 0;"></div>
+
+<div *ngIf="!multiplayer" class="container text-center title mt-3 animate__animated animate__backInDown">
+  <h3>¡Has finalizado el cuestionario!</h3>
+
+  <div class="card">
+    <div class="card-body">
+      <h4>Resultado</h4>
+      <ion-row class="mt-4">
+        <ion-col class="bg-dark text-white">
+          <h6>CANT. PREG</h6>
+          <h6>{{ questionnaireResponse?.numberQuestions }}</h6>
+        </ion-col>
+        <ion-col class="bg-dark text-white">
+          <h6>PUNTOS</h6>
+          <h6>{{ questionnaireResponse?.totalPoints }}</h6>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div class="card-body">
+      <ion-row>
+        <ion-col class="bg-success text-white">
+          <h6>CORRECTAS</h6>
+          <h6>{{ questionnaireResponse?.corrects }}</h6>
+        </ion-col>
+        <ion-col class="text-white bg-danger">
+          <h6>INCORRECTAS</h6>
+          <h6>{{ questionnaireResponse?.incorrects }}</h6>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <button (click)="back()" class="btn btn-secondary mt-3 btn-accept w-100">VOLVER</button>
+
+</div>

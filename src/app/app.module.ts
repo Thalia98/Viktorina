@@ -33,8 +33,6 @@ import { PlayModule } from './components/play/play.module';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
-    DashboardModule,
-    PlayModule
   ],
   providers: [
     {

@@ -23,7 +23,7 @@
   <ion-item *ngFor="let questionnaire of collectionQuestionnaire"
       class="item-list animated fadeInLeft background-white mb-4">
       <div style="display: flex; padding: 10px 0px 10px 0px;">
-          <img [src]="quizService.getImage(questionnaire.urlImage)" style="width: 42%; height: 42%;">
+          <img [src]="quizService.getImage(questionnaire.urlImage)" style="width: 39%; height: 42%;">
           <div>
               <h5><strong>{{questionnaire.title}}</strong></h5>
 
@@ -60,11 +60,14 @@
                     <ion-icon name="play-circle" class="play-icon" [routerLink]="['/play/initial-counter', questionnaire.id]"></ion-icon>
                 </ion-col>
                  <ion-col>
+                    <ion-icon name="stats-chart-outline" [routerLink]="['/dashboard/statistics', questionnaire.id]" style="font-size: 27px;"></ion-icon>
+                </ion-col>
+                 <ion-col>
+                    <ion-icon name="ribbon-outline" [routerLink]="['/dashboard/ranking', questionnaire.id]" style="font-size: 27px;"></ion-icon>
+                </ion-col>
+                <ion-col>
                     <ion-icon name="trash-outline" class="trash-icon" (click)="removeQuestionnaire(questionnaire)"></ion-icon>
                  </ion-col>
-                 <ion-col>
-                    <ion-icon name="stats-chart-outline" style="font-size: 27px;"></ion-icon>
-                </ion-col>
              </ion-row>
           </div>
       </div>

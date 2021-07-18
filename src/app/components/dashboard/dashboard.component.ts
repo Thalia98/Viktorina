@@ -4,6 +4,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { MenuController } from '@ionic/angular';
 import { User } from 'src/app/interfaces/User';
+import { PAGES } from '../../globalValues';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,20 +15,7 @@ export class DashboardComponent implements OnInit {
 
   user: User;
 
-  pages = [
-    {
-      page: 'myQuestionnaires',
-      icon: 'clipboard-outline',
-      title: 'Mis cuestionarios',
-      isSelected: true
-    },
-    {
-      page: '',
-      icon: 'reader-outline',
-      title: 'Todos los cuestionarios',
-      isSelected: false
-    }
-  ];
+  pages = PAGES;
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -49,7 +37,7 @@ export class DashboardComponent implements OnInit {
   }
 
   removeSelected(index) {
-    this.pages.forEach((page, i) => {
+    PAGES.forEach((page, i) => {
       if (index !== i) {
         page.isSelected = false;
       } else {

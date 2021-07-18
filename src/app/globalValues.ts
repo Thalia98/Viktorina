@@ -19,3 +19,19 @@ export const RESPONSES = {
 }
 
 export const TOKEN_KEY = '6hrFDATxrG9w14QY9wwnmVhLE0Wg6LIvwOwUaxz761m1JdsfsdfsdAS5xhSkw0_MQz6bpcJnrFUDwp5lPPFC157dHxbkKlDiQ9XY3ZIP8zAGCsS8ruasdasKjIaIargX';
+
+export const PAGES = [
+    {
+        page: 'myQuestionnaires',
+        icon: 'clipboard-outline',
+        title: 'Mis cuestionarios',
+        isSelected: true
+    },
+    {
+        page: '',
+        icon: 'reader-outline',
+        title: 'Todos los cuestionarios',
+        isSelected: false
+    }
+];
+

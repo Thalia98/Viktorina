@@ -5,16 +5,20 @@ import { CommonModule } from '@angular/common';
 
 import { PlayRoutingModule } from './play-routing.module';
 import { IonicModule } from '@ionic/angular';
+import { SharedModule } from '../shared/shared.module';
+import { UserResponseComponent } from '../shared/user-response/user-response.component';
 
 
 @NgModule({
   declarations: [
     DoQuizComponent,
-    InitialCounterComponent
+    InitialCounterComponent,
+    UserResponseComponent,
   ],
   imports: [
     CommonModule,
     PlayRoutingModule,
+    SharedModule,
     IonicModule.forRoot(),
   ]
 })

@@ -1,28 +1,28 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-
-import { ListQuestionnairesComponent } from './list-questionnaires.component';
-import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 
-describe('ListQuestionnairesComponent', () => {
-  let component: ListQuestionnairesComponent;
-  let fixture: ComponentFixture<ListQuestionnairesComponent>;
+import { RankingComponent } from './ranking.component';
+
+describe('RankingComponent', () => {
+  let component: RankingComponent;
+  let fixture: ComponentFixture<RankingComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ListQuestionnairesComponent ],
+      declarations: [ RankingComponent ],
       imports: [
         IonicModule.forRoot(),
         RouterModule.forRoot([]),
         AngularFireModule.initializeApp(environment.firebaseConfig),
         AngularFirestoreModule
-      ],
+        ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ListQuestionnairesComponent);
+    fixture = TestBed.createComponent(RankingComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

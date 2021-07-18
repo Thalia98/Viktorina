@@ -62,9 +62,21 @@ export class QuizService {
 
     getImage(urlImage) {
         if (urlImage) {
-          return urlImage;
+            return urlImage;
         } else {
-          return 'assets/icon/sin_foto.png';
+            return 'assets/icon/sin_foto.png';
         }
-      }
+    }
+
+    setResponseUser(responseUser): Promise<any> {
+        return this.firestore.collection('Responses').add(responseUser);
+    }
+
+    getUserResponse(id): Observable<any> {
+        return this.firestore.collection('Responses').doc(id).get();
+    }
+
+    getResponseByQuestionnaireId(id): Observable<any> {
+        return this.firestore.collection('Responses', ref => ref.where('id', '==', id)).snapshotChanges();
+    }
 }

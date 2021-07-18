@@ -1,3 +1,5 @@
+import { RankingComponent } from './ranking/ranking.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 import { ShowQuestionnaireComponent } from './show-questionnaire/show-questionnaire.component';
 import { MyQuestionnairesComponent } from './my-questionnaires/my-questionnaires.component';
 import { CreateQuizComponent } from './create-quiz/create-quiz.component';
@@ -21,6 +23,8 @@ import { ListQuestionComponent } from './list-question/list-question.component';
     ListQuestionComponent,
     MyQuestionnairesComponent,
     ShowQuestionnaireComponent,
+    StatisticsComponent,
+    RankingComponent,
   ],
   imports: [
     CommonModule,
