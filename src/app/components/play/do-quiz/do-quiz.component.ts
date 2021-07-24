@@ -28,6 +28,8 @@ export class DoQuizComponent implements OnDestroy {
   selectedOption: any;
   IndexSelected: any;
   collectionAnswerUser = [];
+  collectionIncorrects = [];
+  collectionCorrects = [];
 
   constructor(
     private platform: Platform,
@@ -113,8 +115,11 @@ export class DoQuizComponent implements OnDestroy {
       seconds: this.getSecondsResponse(),
       indexAnswerSelected: this.getSelectedIndex(),
       collectionAnswer: this.questionnaire.collectionQuestions[this.indexQuestion].collectionAnswer,
-      totalSeconds: this.totalSeconds
+      totalSeconds: this.totalSeconds,
     };
+
+    this.setCollectionIncorrects();
+    this.setCollectionCorrects();
 
     this.collectionAnswerUser.push(userResponse);
 
@@ -149,7 +154,7 @@ export class DoQuizComponent implements OnDestroy {
 
     if (this.selectedOption === undefined) {
       this.totalSeconds += secondsQuestion;
-      
+
       return 'No respondido';
     } else {
 
@@ -165,6 +170,18 @@ export class DoQuizComponent implements OnDestroy {
       return '';
     } else {
       return this.IndexSelected;
+    }
+  }
+
+  setCollectionIncorrects() {
+    if (this.selectedOption === undefined || !this.selectedOption?.isCorrect) {
+      this.collectionIncorrects.push(this.questionnaire.collectionQuestions[this.indexQuestion].title);
+    }
+  }
+
+  setCollectionCorrects() {
+    if (this.selectedOption?.isCorrect) {
+      this.collectionCorrects.push(this.questionnaire.collectionQuestions[this.indexQuestion].title);
     }
   }
 
@@ -189,7 +206,9 @@ export class DoQuizComponent implements OnDestroy {
       corrects: this.corrects,
       incorrects: this.incorrects,
       totalPoints: this.totalPoints,
-      collectionAnswerUser: this.collectionAnswerUser
+      collectionAnswerUser: this.collectionAnswerUser,
+      collectionIncorrects: this.collectionIncorrects,
+      collectionCorrects: this.collectionCorrects
     };
 
     this.quizService.setResponseUser(questionnaireAnswer).then(res => {

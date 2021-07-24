@@ -13,6 +13,7 @@ import { ListQuestionnairesComponent } from './list-questionnaires/list-question
 import { SharedModule } from '../shared/shared.module';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ListQuestionComponent } from './list-question/list-question.component';
     DashboardRoutingModule,
     IonicModule.forRoot(),
     SharedModule,
+    HighchartsChartModule,
   ],
 })
 export class DashboardModule { }

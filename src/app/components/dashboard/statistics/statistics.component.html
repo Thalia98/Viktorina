@@ -4,15 +4,35 @@
 <div *ngIf="loading" class="backdrop"></div>
 
 <div class="container">
-  <div class="d-flex justify-content-center mt-3">
-    <div class="card">
-      <div class="card-body text-center">
-        <h2 class="title">Estadísticas del cuestionario</h2>
-      </div>
+  <div class="card">
+    <div class="card-body">
+      <h2 class="title text-center">Estadísticas</h2>
+      <ion-row class="mt-4">
+        <ion-col class="bg-dark text-white">
+          <h5>Total veces realizadas</h5>
+          <h6>{{ collectionUserResponse.length }}</h6>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="bg-dark text-white">
+          <h5>Pregunta más acertada</h5>
+          <h6>{{ bestQuestion }}</h6>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="bg-dark text-white">
+          <h5>Pregunta más fallada</h5>
+          <h6>{{ mostFailedQuestion }}</h6>
+        </ion-col>
+      </ion-row>
     </div>
-  </div>
 
-  <ion-row class="mt-3">
-    <ion-col></ion-col>
-  </ion-row>
-</div>
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptions" [(update)]="updateFlag"
+      [callbackFunction]="chartCallback" class="chart"></highcharts-chart>
+
+    <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsColumn" [(update)]="updateFlagColumn"
+      [callbackFunction]="chartCallbackColumn" class="chart"></highcharts-chart>
+
+    <button routerLink="/dashboard/myQuestionnaires" class="btn btn-secondary mt-3 btn-accept w-90 mb-3 button-back">VOLVER</button>
+
+  </div>
