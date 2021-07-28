@@ -1,3 +1,4 @@
+import { FilterComponent } from './../modals/filter/filter.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { ShowQuestionnaireComponent } from './show-questionnaire/show-questionnaire.component';
@@ -26,6 +27,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     ShowQuestionnaireComponent,
     StatisticsComponent,
     RankingComponent,
+    FilterComponent,
   ],
   imports: [
     CommonModule,

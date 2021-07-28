@@ -1,0 +1,33 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button color="dark" (click)="closeModal()">
+      <ion-icon name="arrow-back" style="color: blanchedalmond; font-size: 28px;"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+  <ion-title>Filtros <span class="remove-filters" (click)="removeFilters()">QUITAR FILTROS</span></ion-title>
+</ion-toolbar>
+
+<div class="container mt-3">
+  <h6 class="title">Categorías</h6>
+  <div *ngFor="let category of categoryCollection; let i = index"
+    class="border border-dark d-inline-flex p-1 m-1 bg-light font-weight-bold" (click)="selectedCategory(i)"
+    [ngClass]="{'animate__animated animate__pulse bg-dark text-white': category.isSelected}">
+    {{ category.name }} ({{ getLengthOfCategory(category.name) }})
+  </div>
+  <h6 class="mt-3 title">Niveles</h6>
+  <div *ngFor="let level of levelCollection; let i = index"
+    class="border border-dark d-inline-flex p-1 m-1 bg-light font-weight-bold" (click)="selectedLevel(i)"
+    [ngClass]="{'animate__animated animate__pulse bg-dark text-white': level.isSelected}">
+    {{ level.name }} ({{ getLengthOfLevel(level.name) }})
+  </div>
+
+  <ion-row class="footer">
+    <ion-col class="text-center font-weight-bold" style="align-self: center;">
+      <div *ngIf="loading" class="loader"></div>
+      <span *ngIf="!loading">{{ collectionSearch.length }} / {{ collection.length }} cuestionarios</span>
+    </ion-col>
+    <ion-col>
+      <button (click)="showResults()" class="btn btn-secondary font-weight-bold text-center">Ver resultados</button>
+    </ion-col>
+  </ion-row>
+</div>

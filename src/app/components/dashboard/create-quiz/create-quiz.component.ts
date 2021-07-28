@@ -2,6 +2,7 @@ import { QuizService } from './../../../services/quiz.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LEVEL, CATEGORIES } from '../../../globalValues';
 
 @Component({
   selector: 'app-create-quiz',
@@ -12,22 +13,9 @@ export class CreateQuizComponent implements OnInit {
 
   formGroup: FormGroup;
   showError: boolean = false;
-  categoryCollection = [
-    'Otro',
-    'Informática',
-    'Deporte',
-    'Historia',
-    'Arte',
-    'Ciencia',
-    'Geografía',
-    'Cultura general'
-  ];
 
-  levelCollection = [
-    'Principiante',
-    'Intermedio',
-    'Difícil'
-  ];
+  levelCollection: any[] = LEVEL;
+  categoryCollection: any[] = CATEGORIES;
 
   nombreArchivo;
   urlImage;

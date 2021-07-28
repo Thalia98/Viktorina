@@ -24,6 +24,12 @@ const routes: Routes = [
       .then(m => m.PlayModule)
   },
   {
+    path: 'chat-group',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./components/chat-group/chat-group.module')
+      .then(m => m.ChatGroupModule)
+  },
+  {
     path: '**',
     redirectTo: '/',
     pathMatch: 'full'
