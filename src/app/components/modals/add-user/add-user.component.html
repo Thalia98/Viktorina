@@ -1,0 +1,37 @@
+<ion-toolbar>
+  <ion-title class="text-center">Añadir usuario</ion-title>
+  <ion-buttons slot="end">
+    <ion-button color="dark" (click)="closeModal()">
+      <ion-icon name="close-outline" class="icon-close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<div class="container">
+  <h6 class="title text-center mt-3">Buscar por nombre de usuario</h6>
+  <ion-row style="align-items: flex-end;">
+    <ion-col>
+      <ion-input placeholder="Buscar usuario" class="input-search mt-3" [(ngModel)]="username"></ion-input>
+    </ion-col>
+    <ion-col size="4">
+      <button [disabled]="username == null || username === ''" *ngIf="!loading" class="button" (click)="searchUser()">Buscar</button>
+      <app-spinner-load *ngIf="loading"></app-spinner-load>
+    </ion-col>
+  </ion-row>
+
+  <ion-row *ngIf="showResult" class="animate__animated animate__fadeIn text-center font-weight-bold mt-1">
+    <ion-col size="1">
+      <ion-icon [name]="nameIconResult" class="icon-result" [ngClass]="{'icon-result-red': !isFound, 'icon-result-green': isFound}"></ion-icon>
+    </ion-col>
+    <ion-col size="7">
+      <span>{{ textResult }}</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col class="text-center">
+      <button [disabled]="!isFound" class="button mt-2" (click)="sendPetition()">Agregar usuario</button>
+    </ion-col>
+  </ion-row>
+
+</div>

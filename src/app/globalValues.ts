@@ -37,6 +37,18 @@ export const LEVEL = [
     'Difícil'
 ];
 
+export const ICONS_NAME = {
+    CLOSE: 'close-outline',
+    CHECK: 'checkmark-outline'
+};
+
+export const TEXT_RESULT = {
+    USER_NOT_FOUND: 'Usuario no encontrado',
+    USER_FOUND: 'Usuario encontrado',
+    USER_SEND: 'Ya ha sido enviada',
+    USER_FRIEND: 'Usuario ya agregado',
+}
+
 export const PAGES = [
     {
         page: 'myQuestionnaires',

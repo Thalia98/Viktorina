@@ -1,3 +1,4 @@
+import { AddUserComponent } from './../modals/add-user/add-user.component';
 import { FilterComponent } from './../modals/filter/filter.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { StatisticsComponent } from './statistics/statistics.component';
@@ -28,6 +29,7 @@ import { HighchartsChartModule } from 'highcharts-angular';
     StatisticsComponent,
     RankingComponent,
     FilterComponent,
+    AddUserComponent
   ],
   imports: [
     CommonModule,

@@ -1,3 +1,4 @@
+import { PetitionsComponent } from './petitions/petitions.component';
 import { ChatBaseComponent } from './chat-base/chat-base.component';
 import { ChatComponent } from './chat/chat.component';
 import { NgModule } from '@angular/core';
@@ -12,6 +13,7 @@ import { IonicModule } from '@ionic/angular';
   declarations: [
     ChatComponent,
     ChatBaseComponent,
+    PetitionsComponent,
   ],
   imports: [
     CommonModule,

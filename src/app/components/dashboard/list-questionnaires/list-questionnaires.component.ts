@@ -67,6 +67,7 @@ export class ListQuestionnairesComponent {
 
       this.loading = false;
     }, error => {
+      console.log(error);
       this.loading = false;
     });
 

@@ -1,8 +1,14 @@
 <ion-toolbar>
   <ion-buttons slot="start">
     <ion-button color="dark" (click)="goBack()">
-      <ion-icon name="arrow-back" style="color: blanchedalmond; font-size: 28px;"></ion-icon>
+      <ion-icon name="arrow-back" class="icon-arrow"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-title>Chat <ion-icon name="add-outline"></ion-icon></ion-title>
+  <ion-title>Chat
+    <ion-icon (click)="openAddUserModal()" class="add-icon" name="person-add-outline" style="margin-left: 40px;"></ion-icon>
+    <ion-icon (click)="openPetitionsUserModal()" class="add-icon" name="person-outline"></ion-icon>
+  </ion-title>
+  <div class="container">
+
+  </div>
 </ion-toolbar>

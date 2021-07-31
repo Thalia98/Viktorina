@@ -61,6 +61,7 @@ export class LoginComponent implements OnInit {
       this.loading = false;
 
       const userInterface: User = {
+        id: res[0].payload.doc.id,
         ...res[0].payload.doc.data()
       };
 

@@ -51,7 +51,6 @@ export class RegisterComponent implements OnInit {
         email: this.formGroup.get('email').value,
         friends: [],
         friendsWaiting: [],
-        friendsPetitions: [],
         gamePetitions: [],
       };
 

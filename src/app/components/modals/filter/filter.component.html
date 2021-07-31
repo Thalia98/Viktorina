@@ -23,7 +23,7 @@
 
   <ion-row class="footer">
     <ion-col class="text-center font-weight-bold" style="align-self: center;">
-      <div *ngIf="loading" class="loader"></div>
+      <app-spinner-load *ngIf="loading"></app-spinner-load>
       <span *ngIf="!loading">{{ collectionSearch.length }} / {{ collection.length }} cuestionarios</span>
     </ion-col>
     <ion-col>

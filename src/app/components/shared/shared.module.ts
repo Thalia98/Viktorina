@@ -1,3 +1,4 @@
+import { SpinnerLoadComponent } from './spinner-load/spinner-load.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from './spinner/spinner.component';
@@ -5,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 
 @NgModule({
-  declarations: [SpinnerComponent],
+  declarations: [SpinnerComponent, SpinnerLoadComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -15,6 +16,7 @@ import { FormBuilder } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     SpinnerComponent,
+    SpinnerLoadComponent,
   ],
   providers: [FormBuilder],
 })
