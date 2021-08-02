@@ -44,8 +44,6 @@ export class LoginComponent implements OnInit {
 
       if (res.user?.emailVerified) {
         this.getUser(res.user);
-        this.authGuardService.login();
-        this.router.navigate(['dashboard/myQuestionnaires']);
       } else {
         this.router.navigate(['/verify']);
       }
@@ -66,6 +64,9 @@ export class LoginComponent implements OnInit {
       };
 
       this.setUserToLocalStorage(userInterface);
+
+      this.authGuardService.login();
+      this.router.navigate(['dashboard/myQuestionnaires']);
     });
   }
 

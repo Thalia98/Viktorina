@@ -4,11 +4,35 @@
       <ion-icon name="arrow-back" class="icon-arrow"></ion-icon>
     </ion-button>
   </ion-buttons>
-  <ion-title>Chat
-    <ion-icon (click)="openAddUserModal()" class="add-icon" name="person-add-outline" style="margin-left: 40px;"></ion-icon>
-    <ion-icon (click)="openPetitionsUserModal()" class="add-icon" name="person-outline"></ion-icon>
-  </ion-title>
-  <div class="container">
 
-  </div>
+  <ion-buttons slot="end">
+    <ion-button [routerLink]="['/chat-group/petitions']" style="height: 46px;">
+      <ion-icon class="add-icon" name="person-outline"></ion-icon>
+      <div *ngIf="countPetitions !== 0" class="count-petition text-center">
+        <span class="text-white">{{ countPetitions }}</span>
+      </div>
+    </ion-button>
+    <ion-button (click)="openAddUserModal()">
+      <ion-icon class="add-icon" name="add-outline" style="margin-left: 40px;"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title>Chat</ion-title>
 </ion-toolbar>
+
+<div class="container">
+  <ion-content (click)="openChatModal(i)" *ngFor="let friendChat of collectionFriends; let i = index" class="row-chat">
+    <ion-row>
+      <ion-col>
+        <h6 class="title">{{ friendChat.usernameFriend }}</h6>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <p *ngIf="friendChat.chat.length > 0">{{ friendChat.chat[friendChat.chat.length -1].message }} <time>{{ friendChat.chat[friendChat.chat.length -1].dateParse }}</time></p>
+        <span *ngIf="friendChat.chat.length == 0">Aún no ha iniciado la conversación</span>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+
+</div>

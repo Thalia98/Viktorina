@@ -16,6 +16,7 @@ import { SharedModule } from '../shared/shared.module';
 import { CreateQuestionComponent } from './create-question/create-question.component';
 import { ListQuestionComponent } from './list-question/list-question.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { ChatComponent } from '../modals/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HighchartsChartModule } from 'highcharts-angular';
     StatisticsComponent,
     RankingComponent,
     FilterComponent,
-    AddUserComponent
+    AddUserComponent,
+    ChatComponent,
   ],
   imports: [
     CommonModule,

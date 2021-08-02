@@ -1,0 +1,27 @@
+.container {
+    background: white;
+    height: 100%;
+}
+
+.petition-number {
+    color: red;
+    font-weight: bold;
+    font-size: 21px;
+}
+
+.row-petition {
+    border-bottom: 1px solid #c5c5c5;
+    border-top: 1px solid #c5c5c5;
+    height: 63px;
+    align-items: center;
+}
+
+.icon-checkmark {
+    color: #00AB84;
+    font-size: 35px;
+}
+
+.icon-refuse {
+    color: #EF3340;
+    font-size: 35px;
+}

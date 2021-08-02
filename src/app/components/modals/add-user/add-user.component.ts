@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { User } from 'src/app/interfaces/User';
+import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
 import { ICONS_NAME, TEXT_RESULT } from '../../../globalValues';
-import { Friends } from '../../models/Firends';
 import { FriendsPetitions } from '../../models/FriendsPetitions';
 
 @Component({
@@ -22,16 +22,16 @@ export class AddUserComponent implements OnInit {
   nameIconResult: string = ICONS_NAME.CLOSE;
   textResult: string = TEXT_RESULT.USER_NOT_FOUND;
   collectionFriendsPetition: FriendsPetitions[] = [];
-  collectionFriends: Friends[] = [];
+  collectionFriends: any[] = this.user.friends;
 
   constructor(
     private modalCtrl: ModalController,
-    private userService: UserService
+    private userService: UserService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
     this.getMySendPetition();
-    this.getMyFriends();
   }
 
   closeModal() {
@@ -100,25 +100,15 @@ export class AddUserComponent implements OnInit {
       userReceiverId: this.userReceiver.id
     };
 
-    this.userService.sendPetition(friendPetition).then(res => {
+    this.chatService.sendPetition(friendPetition).then(res => {
       this.closeModal();
     }, error => { });
   }
 
   getMySendPetition() {
-    this.userService.getMySendPetitions(this.user.id).subscribe(friendsPetitions => {
+    this.chatService.getMySendPetitions(this.user.id).subscribe(friendsPetitions => {
       friendsPetitions.forEach(element => {
         this.collectionFriendsPetition.push({
-          ...element.payload.doc.data()
-        });
-      });
-    }, error => { });
-  }
-
-  getMyFriends() {
-    this.userService.getMySendPetitions(this.user.id).subscribe(friends => {
-      friends.forEach(element => {
-        this.collectionFriends.push({
           ...element.payload.doc.data()
         });
       });
@@ -143,7 +133,7 @@ export class AddUserComponent implements OnInit {
   checkIfIsMyFriend() {
     this.isFound = true;
     this.collectionFriends.forEach(friend => {
-      if (friend.user1Id === this.userReceiver.id || friend.user2Id === this.userReceiver.id) {
+      if (friend === this.userReceiver.id) {
         this.isFound = false;
       }
     });

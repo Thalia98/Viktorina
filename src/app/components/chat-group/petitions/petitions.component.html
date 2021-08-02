@@ -1,3 +1,30 @@
-<p>
-  petitions works!
-</p>
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button color="dark" [routerLink]="['/chat-group/chat-base']">
+      <ion-icon name="arrow-back" class="icon-close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<div class="container">
+  <h5 class="mt-3 mb-3">
+    Peticiones de amistad
+    <span class="petition-number">{{ collectionPetitions.length }}</span>
+  </h5>
+
+  <ion-row *ngFor="let petition of collectionPetitions; let i = index" class="row-petition">
+    <ion-col>
+      <h6 class="title">{{petition.usernamePetitioner}}</h6>
+    </ion-col>
+    <ion-col>
+      <ion-buttons style="justify-content: space-around;">
+        <ion-button (click)="addChatGroup(i)">
+          <ion-icon name="checkmark-outline" class="icon-checkmark"></ion-icon>
+        </ion-button>
+        <ion-button (click)="removePetition(i)">
+          <ion-icon name="close-outline" class="icon-refuse"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+</div>

@@ -31,22 +31,4 @@ export class UserService {
   getUserByUsername(username): Observable<any> {
     return this.firestore.collection('Users', ref => ref.where('username', '==', username)).snapshotChanges();
   }
-
-  getMySendPetitions(id): Observable<any> {
-    return this.firestore.collection('FriendsPetitions', ref => ref.where('userPetitionerId', '==', id)).snapshotChanges();
-  }
-
-  getMyFriends(id): Observable<any> {
-    const firstQuery = this.firestore.collection('Friends', ref => ref.where('user1Id', '==', id)).snapshotChanges();
-    const secondQuery = this.firestore.collection('Friends', ref => ref.where('user2Id', '==', id)).snapshotChanges();
-
-    return combineLatest(firstQuery, secondQuery).pipe(
-      map(([firstQuery, secondQuery]) => [...firstQuery, ...secondQuery])
-    );
-
-  }
-
-  sendPetition(petition): Promise<any> {
-    return this.firestore.collection('FriendsPetitions').add(petition);
-  }
 }

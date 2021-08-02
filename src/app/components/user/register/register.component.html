@@ -57,7 +57,7 @@
         <div class="mb-3">
           <input id="passwordRepeatInput" type="password" formControlName="passwordRepeat" class="form-control"
             placeholder="Repetir Contraseña">
-          <span [hidden]="!formGroup.hasError('notSame')" class="text-danger">
+          <span [hidden]="!formGroup.get('passwordRepeat')?.touched || !formGroup.hasError('notSame')" class="text-danger">
             <strong id="passwordRepeatErrorNotSame">{{errorFormText.ERROR_NOT_SAME}}</strong>
           </span>
           <span

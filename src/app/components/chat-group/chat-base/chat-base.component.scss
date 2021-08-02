@@ -1,13 +1,53 @@
 .container {
-    padding: 0 !important;
-}
-
-.icon-arrow {
-    color: blanchedalmond;
-    font-size: 28px;
+  padding: 0 !important;
+  background: white;
+  height: 100%;
 }
 
 .add-icon {
-    font-size: 26px !important;
-    float: right;
+  font-size: 26px !important;
+  float: right;
+}
+
+.count-petition {
+  width: 23px;
+  height: 23px;
+  background-color: red;
+  position: relative;
+  right: 13px;
+  top: 12px;
+  border-radius: 10px;
+
+  span {
+    font-size: 15px;
+    vertical-align: -webkit-baseline-middle;
+  }
+}
+
+ion-buttons {
+  color: blanchedalmond !important;
+}
+
+.row-chat {
+  border-bottom: 1px solid #c5c5c5;
+  border-top: 1px solid #c5c5c5;
+  height: 82px;
+  align-items: center;
+  --background: white;
+
+  ion-row {
+    margin-left: 10px;
+  }
+}
+
+.row-chat:active {
+  --background: #f1f1f1;
+}
+
+time {
+  font-size: 0.7rem;
+  color: #888;
+  margin-top: 3px;
+  margin-right: 10px;
+  float: right;
 }

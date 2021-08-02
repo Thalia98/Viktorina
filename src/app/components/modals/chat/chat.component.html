@@ -1,0 +1,29 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button color="dark" (click)="goBack()">
+      <ion-icon name="arrow-back" class="icon-arrow"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-title class="title">{{ chatFriend.usernameFriend }}</ion-title>
+</ion-toolbar>
+
+<div class="container">
+  <ol class="chat">
+    <li *ngFor="let message of collectionChat"
+      [ngClass]="{'other': message.userId !== user.id, 'self': message.userId === user.id}">
+      <div class="msg">
+        <p>{{ message.message }}</p>
+        <time>{{ message.dateParse }}</time>
+      </div>
+    </li>
+  </ol>
+
+  <input [(ngModel)]="message" class="textarea" type="text" placeholder="Escribe un mensaje" />
+
+  <ion-buttons class="send-icon">
+    <ion-button color="dark" (click)="sendMessage()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</div>
