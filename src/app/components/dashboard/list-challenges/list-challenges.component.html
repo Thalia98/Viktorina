@@ -1,0 +1,46 @@
+<div class="container mt-4">
+  <h5 class="title mt-3 text-center">Retos</h5>
+
+  <button (click)="openModalAddFriendChallenge()" class="btn btn-secondary btn-accept challenge-button">Retar a un
+    amigo</button>
+
+  <ion-segment [(ngModel)]="tabChoose">
+    <div class="divTabs">
+      <ion-segment-button value="in Progress" class="border-segment">En curso</ion-segment-button>
+      <ion-segment-button value="Finished" class="border-segment">Terminados</ion-segment-button>
+    </div>
+  </ion-segment>
+
+  <div [ngSwitch]="tabChoose" style="height: 100%;">
+    <div *ngSwitchCase="'in Progress'" class="divMenu">
+
+      <ion-row *ngFor="let challengeProgress of collectionChallengesInProgress; let i = index" class="challenge-row">
+        <ion-col class="challenge-col">
+          <h6 class="title">{{ challengeProgress.userChallengedUsername }}</h6>
+          <h6 *ngIf="challengeProgress.myState === STATES_CHALLENGE.PENDING">Tu turno</h6>
+          <h6 *ngIf="challengeProgress.myState === STATES_CHALLENGE.FINALIZED">En espera</h6>
+          <ion-icon *ngIf="challengeProgress.myState === STATES_CHALLENGE.PENDING" name="play-circle" class="play-icon" [routerLink]="['/play/initial-counter/null']" (click)="setCollectionQuestion(i)"></ion-icon>
+        </ion-col>
+      </ion-row>
+
+      <div *ngIf="collectionChallengesInProgress.length == 0" class="mt-3">
+        <p>No hay nada que mostrar</p>
+      </div>
+    </div>
+
+    <div *ngSwitchCase="'Finished'" class="divMenu">
+        
+      <ion-row *ngFor="let challengeFinished of collectionChallengesFinished; let i = index" class="challenge-row">
+          <ion-col class="challenge-col">
+            <h6 class="title">{{ challengeFinished.opponentUsername }}</h6>
+            <h6 class="title" *ngIf="challengeFinished.iAmAWinner">¡Has ganado!</h6>
+            <h6 class="title" *ngIf="!challengeFinished.iAmAWinner">¡Has perdido!</h6>
+          </ion-col>
+        </ion-row>
+
+        <div *ngIf="collectionChallengesFinished.length == 0" class="mt-3">
+        <p>No hay nada que mostrar</p>
+      </div>
+    </div>
+  </div>
+</div>

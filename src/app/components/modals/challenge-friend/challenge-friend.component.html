@@ -1,0 +1,24 @@
+<ion-toolbar>
+  <ion-buttons slot="start">
+    <ion-button color="dark" (click)="closeModal()">
+      <ion-icon name="arrow-back" class="icon-close"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+
+<div class="container">
+  <ion-row *ngFor="let friend of collectionFriends; let i = index" class="row-petition">
+    <ion-col>
+      <h6 class="title">{{friend.usernameFriend}}</h6>
+    </ion-col>
+    <ion-col>
+      <ion-buttons style="justify-content: space-around;">
+        <ion-button (click)="sendPetition(i)" *ngIf="!friend.challenge">
+          <ion-icon name="bonfire-outline" class="icon-challenge"></ion-icon>
+        </ion-button>
+        <span *ngIf="friend.challenge" class="font-weight-bold text-info">Pendiente</span>
+      </ion-buttons>
+    </ion-col>
+  </ion-row>
+</div>

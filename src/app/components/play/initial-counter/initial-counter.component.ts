@@ -26,7 +26,13 @@ export class InitialCounterComponent implements OnDestroy {
     if (this.counter === 3) {
       this.isHidden = false;
       this.playInitialCounter();
-      this.getQuestionnaire();
+
+      if (this.id !== 'null') {
+        this.quizService.multiplayer = false;
+        this.getQuestionnaire();
+      } else {
+        this.quizService.multiplayer = true;
+      }
     }
   }
 
@@ -36,7 +42,7 @@ export class InitialCounterComponent implements OnDestroy {
 
       PAGES.forEach(page => {
         if (page.isSelected) {
-          this.router.navigate(['/dashboard/' + page.page]);
+          this.router.navigate([page.page]);
         }
       });
     }

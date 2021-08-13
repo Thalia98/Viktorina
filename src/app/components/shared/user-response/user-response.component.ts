@@ -10,7 +10,6 @@ import { PAGES } from '../../../globalValues';
 export class UserResponseComponent implements OnInit {
 
   id: string;
-  multiplayer: boolean = false;
   loading = false;
   questionnaireResponse: any;
 
@@ -43,7 +42,7 @@ export class UserResponseComponent implements OnInit {
   back() {
     PAGES.forEach(page => {
       if (page.isSelected) {
-        this.router.navigate(['/dashboard/' + page.page]);
+        this.router.navigate([page.page]);
       }
     });
   }

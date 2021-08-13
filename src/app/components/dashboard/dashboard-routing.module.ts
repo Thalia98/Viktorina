@@ -1,3 +1,4 @@
+import { ListChallengesComponent } from './list-challenges/list-challenges.component';
 import { RankingComponent } from './ranking/ranking.component';
 import { StatisticsComponent } from './statistics/statistics.component';
 import { MyQuestionnairesComponent } from './my-questionnaires/my-questionnaires.component';
@@ -16,6 +17,7 @@ const routes: Routes = [
   { path: 'showQuestionnaire/:id', component: ShowQuestionnaireComponent},
   { path: 'statistics/:id', component: StatisticsComponent},
   { path: 'ranking/:id', component: RankingComponent},
+  { path: 'list-challenges', component: ListChallengesComponent},
 ];
 
 @NgModule({

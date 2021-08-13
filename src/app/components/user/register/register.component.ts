@@ -50,8 +50,6 @@ export class RegisterComponent implements OnInit {
         username: this.formGroup.get('user').value,
         email: this.formGroup.get('email').value,
         friends: [],
-        friendsWaiting: [],
-        gamePetitions: [],
       };
 
       this.saveUser(user);

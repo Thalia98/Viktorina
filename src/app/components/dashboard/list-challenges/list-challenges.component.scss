@@ -1,0 +1,35 @@
+.divTabs {
+    display: flex;
+    margin-right: auto;
+    width: 100%;
+    margin-top: 30px;
+    ion-segment-button {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+  }
+
+  .challenge-button {
+    z-index: 1;
+    background-color: #00B176;
+    border-radius: 7px;
+    height: 41px;
+    width: 160px;
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 17px;
+    font-weight: bold;
+  }
+
+  .challenge-row {
+    background: white;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  .challenge-col {
+    margin-left: 10px;
+    margin-top: 10px;
+  }

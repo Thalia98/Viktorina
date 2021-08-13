@@ -18,6 +18,7 @@ export class QuizService {
     file: [];
     questionnaire: Questionnaire;
     isInProcess: boolean = false;
+    multiplayer: boolean = false;
 
     constructor(
         private firestore: AngularFirestore,
@@ -52,6 +53,10 @@ export class QuizService {
         return this.firestore.collection('Questionnaries').snapshotChanges();
     }
 
+    getAllQuestionnairesOnceTime(): Observable<any> {
+        return this.firestore.collection('Questionnaries').get();
+    }
+
     getQuestionnaire(id): Observable<any> {
         return this.firestore.collection('Questionnaries').doc(id).get();
     }
@@ -74,6 +79,10 @@ export class QuizService {
 
     getUserResponse(id): Observable<any> {
         return this.firestore.collection('Responses').doc(id).get();
+    }
+
+    getUserResponseByGameId(id): Observable<any> {
+        return this.firestore.collection('Responses', ref => ref.where('id', '==', id)).get();
     }
 
     getResponseByQuestionnaireId(id): Observable<any> {

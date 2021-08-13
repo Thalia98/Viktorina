@@ -1,3 +1,4 @@
+import { UserResponseChallengeComponent } from './../shared/user-response-challenge/user-response-challenge.component';
 import { InitialCounterComponent } from './initial-counter/initial-counter.component';
 import { DoQuizComponent } from './do-quiz/do-quiz.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ import { UserResponseComponent } from '../shared/user-response/user-response.com
     DoQuizComponent,
     InitialCounterComponent,
     UserResponseComponent,
+    UserResponseChallengeComponent,
   ],
   imports: [
     CommonModule,

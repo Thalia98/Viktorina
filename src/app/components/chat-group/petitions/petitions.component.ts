@@ -61,12 +61,14 @@ export class PetitionsComponent {
 
       this.user.friends.push({
         friendId: this.collectionPetitions[index].userPetitionerId,
-        chatGroupId: res.id
+        chatGroupId: res.id,
+        challenge: false,
       });
 
       this.collectionPetitions[index].friendsPetitioner.push({
         friendId: this.user.id,
-        chatGroupId: res.id
+        chatGroupId: res.id,
+        challenge: false,
       });
 
       this.addFriend(index);

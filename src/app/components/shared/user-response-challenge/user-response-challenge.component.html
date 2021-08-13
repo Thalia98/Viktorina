@@ -4,37 +4,36 @@
 <div *ngIf="loading" class="backdrop" style="top: 0; right: 0;"></div>
 
 <div class="container text-center title mt-3 animate__animated animate__backInDown">
-  <h3>¡Has finalizado el cuestionario!</h3>
+  <h3>{{ messageTitle }}</h3>
+  <h4>{{ messageSubtitle }}</h4>
 
   <div class="card">
     <div class="card-body">
       <h4>Resultado</h4>
-      <ion-row class="mt-4">
-        <ion-col class="bg-dark text-white">
-          <h6>CANT. PREG</h6>
-          <h6>{{ questionnaireResponse?.numberQuestions }}</h6>
-        </ion-col>
-        <ion-col class="bg-dark text-white">
-          <h6>PUNTOS</h6>
-          <h6>{{ questionnaireResponse?.totalPoints }}</h6>
-        </ion-col>
-      </ion-row>
     </div>
 
-    <div class="card-body">
+    <div *ngFor="let responses of collectionResponses" class="card-body">
       <ion-row>
+        <ion-col class="bg-dark text-white">
+          <h6>USUARIO</h6>
+          <h6>{{ responses?.nameUser }}</h6>
+        </ion-col>
         <ion-col class="bg-success text-white">
           <h6>CORRECTAS</h6>
-          <h6>{{ questionnaireResponse?.corrects }}</h6>
+          <h6>{{ responses?.corrects }}</h6>
         </ion-col>
         <ion-col class="text-white bg-danger">
           <h6>INCORRECTAS</h6>
-          <h6>{{ questionnaireResponse?.incorrects }}</h6>
+          <h6>{{ responses?.incorrects }}</h6>
+        </ion-col>
+        <ion-col class="bg-dark text-white">
+          <h6>PUNTOS</h6>
+          <h6>{{ responses?.totalPoints }}</h6>
         </ion-col>
       </ion-row>
     </div>
   </div>
 
-  <button (click)="back()" class="btn btn-secondary mt-3 btn-accept w-100">VOLVER</button>
+  <button routerLink="/dashboard/list-challenges" class="btn btn-secondary mt-3 btn-accept w-100">VOLVER</button>
 
 </div>

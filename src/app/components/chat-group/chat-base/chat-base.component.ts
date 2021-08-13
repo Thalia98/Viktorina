@@ -34,7 +34,7 @@ export class ChatBaseComponent {
   goBack() {
     PAGES.forEach(page => {
       if (page.isSelected) {
-        this.router.navigate(['/dashboard/' + page.page]);
+        this.router.navigate([page.page]);
       }
     });
   }

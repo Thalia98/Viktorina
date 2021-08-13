@@ -27,7 +27,7 @@ export class CreateQuestionComponent implements OnInit {
   ) {
     this.formGroup = this.formBuilder.group({
       title: ['', Validators.required],
-      seconds: [10, Validators.required],
+      seconds: [20, Validators.required],
       points: [1000, Validators.required],
       answer1: this.formBuilder.group({
         title: ['', Validators.required],

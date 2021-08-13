@@ -1,3 +1,6 @@
+import { ChallengeFriendComponent } from './../modals/challenge-friend/challenge-friend.component';
+import { ChallengesPetitionsComponent } from '../modals/challenges-petitions/challenges-petitions.component';
+import { ListChallengesComponent } from './list-challenges/list-challenges.component';
 import { AddUserComponent } from './../modals/add-user/add-user.component';
 import { FilterComponent } from './../modals/filter/filter.component';
 import { RankingComponent } from './ranking/ranking.component';
@@ -32,6 +35,9 @@ import { ChatComponent } from '../modals/chat/chat.component';
     FilterComponent,
     AddUserComponent,
     ChatComponent,
+    ListChallengesComponent,
+    ChallengesPetitionsComponent,
+    ChallengeFriendComponent,
   ],
   imports: [
     CommonModule,

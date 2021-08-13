@@ -176,7 +176,7 @@ ion-item:last-child {
 }
 
 .font-weight-bold {
-    font-weight: bold;
+    font-weight: bold !important;
 }
 
 .icon-close {
@@ -188,3 +188,24 @@ ion-item:last-child {
     color: blanchedalmond;
     font-size: 28px;
 }
+
+.segment-button-checked {
+    color: black;
+    --indicator-color: black;
+}
+
+.count-petition {
+    width: 23px;
+    height: 23px;
+    background-color: red;
+    position: relative;
+    right: 13px;
+    top: 12px;
+    border-radius: 10px;
+  
+    span {
+      font-size: 15px;
+      vertical-align: -webkit-baseline-middle;
+    }
+  }
+  

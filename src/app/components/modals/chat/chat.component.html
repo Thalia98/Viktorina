@@ -8,7 +8,7 @@
   <ion-title class="title">{{ chatFriend.usernameFriend }}</ion-title>
 </ion-toolbar>
 
-<div class="container">
+<div #scrollMe class="container">
   <ol class="chat">
     <li *ngFor="let message of collectionChat"
       [ngClass]="{'other': message.userId !== user.id, 'self': message.userId === user.id}">

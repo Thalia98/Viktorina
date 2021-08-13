@@ -47,19 +47,30 @@ export const TEXT_RESULT = {
     USER_FOUND: 'Usuario encontrado',
     USER_SEND: 'Ya ha sido enviada',
     USER_FRIEND: 'Usuario ya agregado',
+};
+
+export const STATES_CHALLENGE = {
+    PENDING: 'Pendiente',
+    FINALIZED: 'Finalizado'
 }
 
 export const PAGES = [
     {
-        page: 'myQuestionnaires',
+        page: '/dashboard/myQuestionnaires',
         icon: 'clipboard-outline',
         title: 'Mis cuestionarios',
         isSelected: true
     },
     {
-        page: '',
+        page: '/dashboard/',
         icon: 'reader-outline',
         title: 'Todos los cuestionarios',
+        isSelected: false
+    },
+    {
+        page: '/dashboard/list-challenges',
+        icon: 'bonfire-outline',
+        title: 'Retos',
         isSelected: false
     }
 ];

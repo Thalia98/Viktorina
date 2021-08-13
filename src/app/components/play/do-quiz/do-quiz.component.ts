@@ -1,3 +1,4 @@
+import { ChallengesService } from 'src/app/services/challenges.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Platform } from '@ionic/angular';
@@ -35,6 +36,7 @@ export class DoQuizComponent implements OnDestroy {
     private platform: Platform,
     public quizService: QuizService,
     private router: Router,
+    private challengeService: ChallengesService,
   ) {
     this.questionnaire = this.quizService.questionnaire;
   }
@@ -53,7 +55,7 @@ export class DoQuizComponent implements OnDestroy {
     if (this.seconds != 0) {
       PAGES.forEach(page => {
         if (page.isSelected) {
-          this.router.navigate(['/dashboard/' + page.page]);
+          this.router.navigate([page.page]);
         }
       });
     }
@@ -213,7 +215,18 @@ export class DoQuizComponent implements OnDestroy {
 
     this.quizService.setResponseUser(questionnaireAnswer).then(res => {
       this.loading = false;
-      this.router.navigate(['play/answer-user', res.id]);
+
+      if (this.quizService.multiplayer) {
+        if (this.questionnaire.isUser1) {
+          this.challengeService.updateChallengeStateUser1(this.questionnaire.id).then(() => { }, error => { });
+        } else {
+          this.challengeService.updateChallengeStateUser2(this.questionnaire.id).then(() => { }, error => { });
+        }
+
+        this.router.navigate(['play/answer-user-challenge', this.questionnaire.id]);
+      } else {
+        this.router.navigate(['play/answer-user', res.id]);
+      }
     }, error => {
       this.loading = false;
       this.router.navigate(['/dashboard']);

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Chat } from 'src/app/interfaces/Chat';
 import { ChatService } from 'src/app/services/chat.service';
@@ -15,6 +15,8 @@ export class ChatComponent implements OnInit {
   collectionChat: Chat[] = [];
   message: string;
 
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+
   constructor(
     private modalCtrl: ModalController,
     private chatService: ChatService,
@@ -24,18 +26,29 @@ export class ChatComponent implements OnInit {
     this.getChatGroup();
   }
 
+  ionViewDidEnter() {
+    this.scrollToBottom();
+  }
+
   goBack() {
     this.modalCtrl.dismiss();
   }
 
   sendMessage() {
     let date = new Date();
+    let minutes: any;
+
+    if (date.getMinutes() < 10) {
+      minutes = '0' + date.getMinutes();
+    } else {
+      minutes = date.getMinutes();
+    }
 
     const messageChat: Chat = {
       message: this.message,
       date: date,
       userId: this.user.id,
-      dateParse: date.getHours() + ':' + date.getMinutes()
+      dateParse: date.getHours() + ':' + minutes
     };
 
     this.collectionChat.push(messageChat);
@@ -49,6 +62,12 @@ export class ChatComponent implements OnInit {
     this.chatService.getChatGroup(this.chatFriend.chatGroupId).subscribe(chat => {
       this.collectionChat = chat.payload.data().chat;
     }, error => { });
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 
 }
