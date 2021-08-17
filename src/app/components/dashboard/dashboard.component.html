@@ -4,16 +4,20 @@
     </ion-buttons>
 
     <ion-buttons slot="end">
+        <ion-button (click)="openModalShop()">
+            <span class="text-white" style="font-size: 17px;">{{ user.coins }}</span>
+            <ion-icon src="../../../../assets/icon/coin.svg" class="icon-coin"></ion-icon>
+        </ion-button>
         <ion-button (click)="openChallengesNotifications()" style="height: 46px;">
             <ion-icon name="bonfire-outline" class="header-icon"></ion-icon>
             <div *ngIf="countPetitions !== 0" class="count-petition text-center">
                 <span class="text-white">{{ countPetitions }}</span>
             </div>
         </ion-button>
-        <ion-button [routerLink]="['/chat-group/chat-base']" >
-            <ion-icon name="chatbox-outline" class="header-icon" ></ion-icon>
+        <ion-button [routerLink]="['/chat-group/chat-base']">
+            <ion-icon name="chatbox-outline" class="header-icon"></ion-icon>
         </ion-button>
-      </ion-buttons>
+    </ion-buttons>
 </ion-toolbar>
 
 <ion-menu contentId="main" type="overlay">

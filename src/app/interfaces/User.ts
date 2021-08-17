@@ -3,5 +3,6 @@ export interface User {
     uid: string;
     id?: string;
     username: string;
+    coins: number;
     friends: [];
 }

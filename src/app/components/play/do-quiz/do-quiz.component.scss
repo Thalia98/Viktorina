@@ -17,3 +17,61 @@
     font-size: 20px;
     height: 44px;
 }
+
+.icon-button {
+    margin-right: 18px;
+    margin-bottom: 13px;
+    font-size: 28px;
+}
+
+.coin {
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+.button-filter {
+    background: white;
+    display: inline-block;
+    text-align: center;
+}
+
+.bg-disabled {
+    background: #dad3d3;
+}
+
+.removed {
+  
+    -webkit-animation: disapear 1s;
+    -webkit-animation-fill-mode: forwards; 
+    animation: disapear 1s;
+    animation-fill-mode: forwards;
+  }
+  
+  @-webkit-keyframes disapear{
+    
+    50% {
+      
+      -webkit-transform: translateX(-5%);
+      transform: translateX(-5%);
+    }
+    
+    100% {
+      -webkit-transform: translateX(200%);
+      transform: translateX(200%); 
+    }    
+  }
+  
+  @keyframes disapear{
+    
+    50% {
+      
+      -webkit-transform: translateX(-5%);
+      transform: translateX(-5%);
+    }
+    
+    100% {
+      -webkit-transform: translateX(200%);
+      transform: translateX(200%); 
+    }    
+  }
+  

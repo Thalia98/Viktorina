@@ -1,3 +1,4 @@
+import { PaymentComponent } from './../modals/payment/payment.component';
 import { ChallengeFriendComponent } from './../modals/challenge-friend/challenge-friend.component';
 import { ChallengesPetitionsComponent } from '../modals/challenges-petitions/challenges-petitions.component';
 import { ListChallengesComponent } from './list-challenges/list-challenges.component';
@@ -20,6 +21,7 @@ import { CreateQuestionComponent } from './create-question/create-question.compo
 import { ListQuestionComponent } from './list-question/list-question.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChatComponent } from '../modals/chat/chat.component';
+import { NgxPayPalModule } from 'ngx-paypal';
 
 @NgModule({
   declarations: [
@@ -38,9 +40,11 @@ import { ChatComponent } from '../modals/chat/chat.component';
     ListChallengesComponent,
     ChallengesPetitionsComponent,
     ChallengeFriendComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,
+    NgxPayPalModule,
     DashboardRoutingModule,
     IonicModule.forRoot(),
     SharedModule,

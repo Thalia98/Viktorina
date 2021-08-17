@@ -15,9 +15,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 
 import { AppComponent } from './app.component';
-import { DashboardModule } from './components/dashboard/dashboard.module';
-import { PlayModule } from './components/play/play.module';
-
+import { NgxPayPalModule } from 'ngx-paypal';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,6 +31,7 @@ import { PlayModule } from './components/play/play.module';
     AngularFirestoreModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    NgxPayPalModule,
   ],
   providers: [
     {

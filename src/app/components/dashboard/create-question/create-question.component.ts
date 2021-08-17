@@ -38,11 +38,11 @@ export class CreateQuestionComponent implements OnInit {
         isCorrect: [false, Validators.required]
       }),
       answer3: this.formBuilder.group({
-        title: '',
+        title: ['', Validators.required],
         isCorrect: false
       }),
       answer4: this.formBuilder.group({
-        title: '',
+        title: ['', Validators.required],
         isCorrect: false
       }),
     });

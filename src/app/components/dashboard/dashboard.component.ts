@@ -1,3 +1,4 @@
+import { PaymentComponent } from './../modals/payment/payment.component';
 import { ChallengesPetitionsComponent } from '../modals/challenges-petitions/challenges-petitions.component';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
@@ -69,6 +70,13 @@ export class DashboardComponent implements OnInit {
       componentProps: {
         user: this.user
       }
+    });
+    return await modal.present();
+  }
+
+  async openModalShop() {
+    const modal = await this.modalCtrl.create({
+      component: PaymentComponent
     });
     return await modal.present();
   }

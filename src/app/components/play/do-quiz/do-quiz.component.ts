@@ -7,6 +7,7 @@ import { User } from 'src/app/interfaces/User';
 import { QuizService } from 'src/app/services/quiz.service';
 import { Questionnaire } from '../../models/Questionnaire';
 import { PAGES } from '../../../globalValues';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-do-quiz',
@@ -23,8 +24,13 @@ export class DoQuizComponent implements OnDestroy {
   corrects: number = 0;
   incorrects: number = 0;
   totalSeconds: number = 0;
-
+  removeOptionIndex1: number = -1;
+  removeOptionIndex2: number = -1;
+  isDoubleChance: boolean = false;
+  isDoubleChanceClicked: boolean = false;
+  isBomb: boolean = false;
   loading: boolean = false;
+  showError: boolean = false;
 
   selectedOption: any;
   IndexSelected: any;
@@ -32,11 +38,14 @@ export class DoQuizComponent implements OnDestroy {
   collectionIncorrects = [];
   collectionCorrects = [];
 
+  user = JSON.parse(localStorage.getItem('user'));
+
   constructor(
     private platform: Platform,
     public quizService: QuizService,
     private router: Router,
     private challengeService: ChallengesService,
+    private userService: UserService,
   ) {
     this.questionnaire = this.quizService.questionnaire;
   }
@@ -81,28 +90,51 @@ export class DoQuizComponent implements OnDestroy {
 
   playInitialCounter() {
     this.seconds = this.questionnaire.collectionQuestions[this.indexQuestion].second;
-    this.setInterval = setInterval(() => {
-      if (this.seconds === 0) {
-        this.addAnswer();
-      }
-      this.seconds--;
-    }, 1000);
+    // this.setInterval = setInterval(() => {
+    //   if (this.seconds === 0) {
+    //     this.addAnswer();
+    //   }
+    //   this.seconds--;
+    // }, 1000);
   }
 
   selectedAnswer(answer, index) {
     this.selectedOption = answer;
     this.IndexSelected = index;
+
+    if (!this.isDoubleChance || this.isDoubleChance && answer.isCorrect) {
+      setTimeout(() => {
+        this.next();
+      }, 500);
+    }
+
+    this.isDoubleChance = false;
   }
 
-  addClassOption(answer) {
+  addClassOption(answer, index) {
+
+    let classAsnwer = '';
     if (answer === this.selectedOption) {
-      return 'selected-question';
-    } else {
-      return '';
+      classAsnwer = 'selected-question';
+      if (answer.isCorrect) {
+        classAsnwer += ' bg-success';
+      } else {
+        classAsnwer += ' bg-danger';
+      }
     }
+
+    if (index === this.removeOptionIndex1 || index === this.removeOptionIndex2) {
+      classAsnwer += ' removed';
+    }
+
+    return classAsnwer;
   }
 
   next() {
+    this.removeOptionIndex1 = -1;
+    this.removeOptionIndex2 = -1;
+    this.isBomb = false;
+    this.isDoubleChanceClicked = false;
     clearInterval(this.setInterval);
     this.addAnswer();
     this.playInitialCounter();
@@ -230,6 +262,58 @@ export class DoQuizComponent implements OnDestroy {
     }, error => {
       this.loading = false;
       this.router.navigate(['/dashboard']);
+    });
+  }
+
+  remove2Answer() {
+    let iHaveMoney = this.checkMoney();
+
+    if (iHaveMoney) {
+      this.isBomb = true;
+      this.questionnaire.collectionQuestions[this.indexQuestion].collectionAnswer.forEach((answer, index) => {
+        if (!answer.isCorrect) {
+          if (this.removeOptionIndex1 === -1) {
+            this.removeOptionIndex1 = index;
+          }
+
+          if (this.removeOptionIndex2 === -1 && this.removeOptionIndex1 !== index) {
+            this.removeOptionIndex2 = index;
+          }
+        }
+      });
+    }
+  }
+
+  setDoubleCheck() {
+    let iHaveMoney = this.checkMoney();
+
+    if (iHaveMoney) {
+      this.isDoubleChanceClicked = true;
+      this.isDoubleChance = true;
+    }
+  }
+
+  checkMoney() {
+    let resultCoins = this.user.coins - 6;
+
+    if (resultCoins < 0) {
+      this.showError = true;
+
+      setTimeout(() => {
+        this.showError = false;
+      }, 3500);
+      
+      return false;
+    } else {
+      this.updateCoins(resultCoins);
+      return true;
+    }
+  }
+
+  updateCoins(coins) {
+    this.userService.updateCoins(this.user.id, coins).then(res => {
+      this.user.coins = coins;
+      localStorage.setItem('user', JSON.stringify(this.user));
     });
   }
 

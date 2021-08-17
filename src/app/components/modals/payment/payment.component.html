@@ -1,0 +1,104 @@
+<div *ngIf="showPaypal" class="container p-3">
+
+  <ngx-paypal [config]="payPalConfig">
+  </ngx-paypal>
+
+  <button class="p-3 w-100 btn-secondary title mt-3" (click)="showPaypal = false">
+    Volver
+  </button>
+</div>
+
+<ion-row class="header bg-dark" *ngIf="!showPaypal">
+  <ion-col size="1">
+    <ion-icon (click)="closeModal()" name="arrow-back" class="text-white" style="font-size: 29px; margin-left: 10px;"></ion-icon>
+  </ion-col>
+  <ion-col>
+    <h4 class="title text-white text-center" style="margin-right: 67px;">TIENDA</h4>
+  </ion-col>
+</ion-row>
+
+<div *ngIf="!showPaypal" class="container">
+  <ion-row>
+    <ion-col class="background-coin">
+      <span>{{ this.user.coins }}</span>
+      <ion-icon src="../../../../assets/icon/coin.svg" class="icon-coin"></ion-icon>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-header mt-3 text-center font-weight-bold">
+    <ion-col>
+      <span>10 Monedas</span>
+    </ion-col>
+    <ion-col>
+      <span>55 Monedas</span>
+    </ion-col>
+    <ion-col>
+      <span>120 Monedas</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-icons text-center">
+    <ion-col>
+      <img src="../../../../assets/icon/coin.svg" />
+    </ion-col>
+    <ion-col>
+      <div class="discount"><span>-10%</span></div>
+      <img src="../../../../assets/icon/coin-medium.png" />
+    </ion-col>
+    <ion-col>
+      <div class="discount"><span>-15%</span></div>
+      <img src="../../../../assets/icon/coin-max.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-prices">
+    <ion-col>
+      <button class="p-3 w-100 btn-secondary title" (click)="pay('0.99', 10)">
+        0,99€
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class="p-3 w-100 btn-secondary title" (click)="pay('4.99', 55)">
+        4,99€
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class="p-3 w-100 btn-secondary title" (click)="pay('9.99', 120)">
+        9,99€
+      </button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-header mt-3 text-center font-weight-bold">
+    <ion-col>
+      <span>320 Monedas</span>
+    </ion-col>
+    <ion-col>
+      <span>1300 Monedas</span>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-icons text-center">
+    <ion-col>
+      <div class="discount"><span>-20%</span></div>
+      <img src="../../../../assets/icon/chest.png" />
+    </ion-col>
+    <ion-col>
+      <div class="discount"><span>-25%</span></div>
+      <img src="../../../../assets/icon/chest-max.png" />
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="row-prices mb-3">
+    <ion-col>
+      <button class="p-3 w-100 btn-secondary title" (click)="pay('24.99', 320)">
+        24,99€
+      </button>
+    </ion-col>
+    <ion-col>
+      <button class="p-3 w-100 btn-secondary title" (click)="pay('99.99', 1300)">
+        99,99€
+      </button>
+    </ion-col>
+  </ion-row>
+</div>

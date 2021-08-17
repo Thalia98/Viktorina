@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/interfaces/User';
 import { PopupService } from 'src/app/services/popup.service';
@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FilterService } from 'src/app/services/filter.service';
 import { FilterComponent } from '../../modals/filter/filter.component';
 import { ModalController } from '@ionic/angular';
+import { ICreateOrderRequest } from 'ngx-paypal';
 
 @Component({
   selector: 'app-my-questionnaires',
@@ -117,7 +118,7 @@ export class MyQuestionnairesComponent {
 
     modal.onDidDismiss()
       .then((data) => {
-        if(data?.data) {
+        if (data?.data) {
           this.isFilter = data.data['isFilter'];
           this.collectionQuestionnaire = data.data['collection'];
           this.collectionQuestionnaireSearch = data.data['collection'];

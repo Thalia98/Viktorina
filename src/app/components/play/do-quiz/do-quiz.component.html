@@ -3,6 +3,10 @@
 </div>
 <div *ngIf="loading" class="backdrop" style="top: 0; right: 0;"></div>
 
+<div *ngIf="showError" class="alert alert-danger text-center" style="margin-bottom: 0;" role="alert">
+  NO TIENES SUFICIENTES MONEDAS
+</div>
+
 <div class="container mt-3">
   <div class="d-flex justify-content-center mt-3">
     <h1 class="title counter">{{ getSeconds() }}</h1>
@@ -18,13 +22,54 @@
       <ul class="list-group mt-3">
         <li class="list-group-item animate__animated animate__fadeIn"
           *ngFor="let answer of questionnaire?.collectionQuestions[indexQuestion].collectionAnswer; let i = index"
-          (click)="selectedAnswer(answer, i)"
-          [ngClass]="addClassOption(answer)">
+          (click)="selectedAnswer(answer, i)" [ngClass]="addClassOption(answer, i)">
           {{answer.description}}
         </li>
       </ul>
     </ion-col>
   </ion-row>
 
-  <button (click)="next()" [disabled]="!selectedOption" class="btn btn-secondary mt-3 btn-accept">ACEPTAR</button>
+  <div class="mt-2">
+    <div class="button-filter" (click)="remove2Answer()" [ngClass]="{'bg-disabled': isBomb}">
+      <div style="display: inline-block;">
+        <ion-icon class="icon-button" src="../../../../assets/icon/bomb.svg"></ion-icon>
+      </div>
+
+      <div style="display: inline-block;">
+        <ion-row>
+          <ion-col>
+            <span>Bomba</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-icon src="../../../../assets/icon/coin.svg"></ion-icon>
+            <span class="coin">6</span>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+
+    <div class="button-filter" style="border-left: 1px solid #dadada;" (click)="setDoubleCheck()" [ngClass]="{'bg-disabled': isDoubleChanceClicked}">
+      <div style="display: inline-block;">
+        <ion-icon class="icon-button" src="../../../../assets/icon/replay.svg"></ion-icon>
+      </div>
+
+      <div style="display: inline-block;">
+        <ion-row>
+          <ion-col>
+            <span>Doble oportunidad</span>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>
+            <ion-icon src="../../../../assets/icon/coin.svg"></ion-icon>
+            <span class="coin">6</span>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
 </div>

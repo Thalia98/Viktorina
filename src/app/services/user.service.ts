@@ -31,4 +31,11 @@ export class UserService {
   getUserByUsername(username): Observable<any> {
     return this.firestore.collection('Users', ref => ref.where('username', '==', username)).snapshotChanges();
   }
+
+  updateCoins(id, coins): Promise<any> {
+    const userRef = this.firestore.collection('Users').doc(id);
+
+    return userRef.update({ coins: coins });
+  }
+
 }
