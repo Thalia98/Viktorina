@@ -20,7 +20,7 @@
     <ion-item *ngFor="let questionnaire of collectionQuestionnaire"
         class="item-list animated fadeInLeft background-white mb-4">
         <div style="display: flex; padding: 10px 0px 10px 0px;">
-            <img [src]="quizService.getImage(questionnaire.urlImage)" style="width: 42%; height: 42%;">
+            <img [src]="quizService.getImage(questionnaire.urlImage)" class="img-questionnaire">
             <div>
                 <h5><strong>{{questionnaire.title}}</strong></h5>
 

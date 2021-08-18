@@ -78,6 +78,12 @@ export class DashboardComponent implements OnInit {
     const modal = await this.modalCtrl.create({
       component: PaymentComponent
     });
+    modal.onDidDismiss()
+    .then((data) => {
+      if (data?.data['hasPaid']) {
+        this.user = JSON.parse(localStorage.getItem('user'));
+      }
+    });
     return await modal.present();
   }
 }

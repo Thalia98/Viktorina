@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user.service';
 export class PaymentComponent implements OnInit {
 
   showPaypal: boolean = false;
+  hasPaid: boolean = false;
+
   payPalConfig: any;
   user = JSON.parse(localStorage.getItem('user'));
 
@@ -58,6 +60,7 @@ export class PaymentComponent implements OnInit {
       },
       onClientAuthorization: (data) => {
         this.updateUserCoins(this.user.coins + coins);
+        this.hasPaid = true;
         this.showPaypal = false;
       }
     };
@@ -73,7 +76,7 @@ export class PaymentComponent implements OnInit {
   }
 
   closeModal() {
-    this.modalCtrl.dismiss();
+    this.modalCtrl.dismiss({ hasPaid: this.hasPaid });
   }
 
 }

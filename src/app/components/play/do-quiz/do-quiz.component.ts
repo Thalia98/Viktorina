@@ -90,12 +90,12 @@ export class DoQuizComponent implements OnDestroy {
 
   playInitialCounter() {
     this.seconds = this.questionnaire.collectionQuestions[this.indexQuestion].second;
-    // this.setInterval = setInterval(() => {
-    //   if (this.seconds === 0) {
-    //     this.addAnswer();
-    //   }
-    //   this.seconds--;
-    // }, 1000);
+    this.setInterval = setInterval(() => {
+      if (this.seconds === 0) {
+        this.addAnswer();
+      }
+      this.seconds--;
+    }, 1000);
   }
 
   selectedAnswer(answer, index) {

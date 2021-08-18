@@ -54,6 +54,12 @@ export const STATES_CHALLENGE = {
     FINALIZED: 'Finalizado'
 }
 
+export const RESULT_CHALLENGE = {
+    WINNER: 'Ganador',
+    LOSER: 'Perdedor',
+    TIE: 'Empate'
+}
+
 export const PAGES = [
     {
         page: '/dashboard/myQuestionnaires',

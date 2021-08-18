@@ -209,3 +209,11 @@ ion-item:last-child {
     }
   }
   
+  input:-webkit-autofill {
+    -webkit-box-shadow:0 0 0 50px white inset;
+    -webkit-text-fill-color: #999;
+}
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 50px white inset;
+    -webkit-text-fill-color: #999;
+}

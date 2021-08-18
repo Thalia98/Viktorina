@@ -3,7 +3,7 @@ import { ChallengeFriendComponent } from './../../modals/challenge-friend/challe
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ChallengesService } from 'src/app/services/challenges.service';
-import { STATES_CHALLENGE } from '../../../globalValues';
+import { STATES_CHALLENGE, RESULT_CHALLENGE } from '../../../globalValues';
 
 @Component({
   selector: 'app-list-challenges',
@@ -17,6 +17,7 @@ export class ListChallengesComponent {
   collectionChallengesFinished: any[] = [];
   user = JSON.parse(localStorage.getItem('user'));
   STATES_CHALLENGE = STATES_CHALLENGE;
+  RESULT_CHALLENGE = RESULT_CHALLENGE;
 
   constructor(
     private modalCtrl: ModalController,
@@ -43,7 +44,7 @@ export class ListChallengesComponent {
 
         this.getData(challenges1);
         this.getData(challenges2);
-        
+
       }, error => { });
     }, error => { });
   }
@@ -51,7 +52,7 @@ export class ListChallengesComponent {
   getData(challenges) {
     challenges.forEach(challenge => {
       if (challenge.payload.doc.data().winner === '') {
-        if (challenge.payload.doc.userId1 === this.user.id) {
+        if (challenge.payload.doc.data().userId1 === this.user.id) {
           this.pushCollectionChallengesInProgress(
             challenge.payload.doc.data().userId2,
             challenge.payload.doc.data().username2,
@@ -67,7 +68,12 @@ export class ListChallengesComponent {
             challenge.payload.doc.id, false);
         }
       } else {
-        let iAmAWinner = challenge.payload.doc.data().winner === this.user.username ? true : false;
+        let iAmAWinner;
+        if (challenge.payload.doc.data().winner != 'null') {
+          iAmAWinner = challenge.payload.doc.data().winner === this.user.username ? RESULT_CHALLENGE.WINNER : RESULT_CHALLENGE.LOSER;
+        } else {
+          iAmAWinner = RESULT_CHALLENGE.TIE;
+        }
 
         if (challenge.payload.doc.data().userId1 === this.user.id) {
           this.pushCollectionChallengesFinished(iAmAWinner, challenge.payload.doc.data().username2);

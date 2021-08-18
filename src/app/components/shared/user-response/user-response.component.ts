@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { QuizService } from 'src/app/services/quiz.service';
@@ -12,11 +13,14 @@ export class UserResponseComponent implements OnInit {
   id: string;
   loading = false;
   questionnaireResponse: any;
+  user = JSON.parse(localStorage.getItem('user'));
+  showMessageCoins: boolean = false;
 
   constructor(
     private quizService: QuizService,
     private route: ActivatedRoute,
     private router: Router,
+    private userService: UserService,
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
@@ -32,10 +36,20 @@ export class UserResponseComponent implements OnInit {
 
       this.questionnaireResponse = res.data();
 
-      console.log(this.questionnaireResponse);
+      if (this.questionnaireResponse.corrects > this.questionnaireResponse.incorrects) {
+        this.showMessageCoins = true;
+        this.updateCoins();
+      }
 
     }, error => {
       this.loading = false;
+    });
+  }
+
+  updateCoins() {
+    this.userService.updateCoins(this.user.id, 3).then(() => {
+      this.user.coins = 3;
+      localStorage.setItem('user', JSON.stringify(this.user));
     });
   }
 
