@@ -2,5 +2,5 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo "Pasando los test del programa"
-# npm test
+#npm test
 
