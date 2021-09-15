@@ -215,7 +215,7 @@ export class DoQuizComponent implements OnDestroy {
 
   setCollectionCorrects() {
     if (this.selectedOption?.isCorrect) {
-      this.collectionCorrects.push(this.questionnaire.collectionQuestions[this.indexQuestion].title);
+      this.collectionCorrects.push({ question: this.questionnaire.collectionQuestions[this.indexQuestion].title, points: this.questionnaire.collectionQuestions[this.indexQuestion].point});
     }
   }
 
