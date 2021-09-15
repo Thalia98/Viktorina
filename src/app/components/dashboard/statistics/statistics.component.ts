@@ -38,7 +38,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       zoomType: "x",
     },
     title: {
-      text: 'Gráfica de media de aciertos y fallos'
+      text: 'Gráfica de media de puntuación'
     },
     xAxis: {
       type: 'datetime',
@@ -189,7 +189,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
       });
     });
 
-    this.bestQuestion = this.sortQuestions(count)[0] ? this.sortQuestions(count)[0].nameQuestion : 'No se ha acerado ninguna';
+    this.bestQuestion = this.sortQuestions(count)[0] ? this.sortQuestions(count)[0].nameQuestion.question : 'No se ha acertado ninguna';
   }
 
   sortQuestions(questionCollection) {
@@ -208,13 +208,21 @@ export class StatisticsComponent implements OnInit, OnDestroy {
 
   getAllCorrectsAndIncorrects() {
     this.collectionUserResponse.forEach(question => {
-      let totalMedium = question.corrects - (question.incorrects / question.collectionAnswerUser.length - 1);
+      let totalPoints = 0;
+
+      question.collectionCorrects.forEach(questionPoints => {
+        totalPoints += questionPoints.points;
+      });
+
+      console.log(totalPoints);
+
+      let totalMedium = totalPoints / (question.collectionAnswerUser.length - 1);
 
       let date = new Date(question.date.toDate());
 
       let dateParse = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds());
 
-      this.collectionData.push({x: dateParse, y: totalMedium});
+      this.collectionData.push({ x: dateParse, y: Math.round(totalMedium * 100) / 100 });
       this.incorrects += question.incorrects;
       this.corrects += question.corrects;
     });
@@ -232,7 +240,7 @@ export class StatisticsComponent implements OnInit, OnDestroy {
     this.chart.showLoading();
     setTimeout(() => {
       this.chart.hideLoading();
-      
+
       Highcharts.setOptions({
         lang: {
           loading: 'Cargando...',
