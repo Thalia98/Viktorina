@@ -77,7 +77,7 @@ export class ChatBaseComponent {
 
       this.getMyPetitions();
       this.getMyFriends();
-    })
+    });
   }
 
   getMyFriends() {
