@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { QuizService } from 'src/app/services/quiz.service';
+import { PAGES } from '../../../globalValues';
 
 @Component({
   selector: 'app-ranking',
@@ -16,7 +17,8 @@ export class RankingComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private quizService: QuizService
+    private quizService: QuizService,
+    private router: Router,
   ) {
     this.id = this.route.snapshot.paramMap.get('id');
   }
@@ -54,5 +56,13 @@ export class RankingComponent implements OnInit, OnDestroy {
   getPositionRanking() {
     this.collectionUserResponse = this.collectionUserResponse.sort((n1, n2) => n1.totalSeconds - n2.totalSeconds);
     this.collectionUserResponse = this.collectionUserResponse.sort((n1, n2) => n2.totalPoints - n1.totalPoints);
+  }
+
+  back() {
+    PAGES.forEach(page => {
+      if (page.isSelected) {
+        this.router.navigate([page.page]);
+      }
+    });
   }
 }
