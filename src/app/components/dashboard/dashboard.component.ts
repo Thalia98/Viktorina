@@ -8,6 +8,7 @@ import { MenuController, ModalController } from '@ionic/angular';
 import { User } from 'src/app/interfaces/User';
 import { PAGES } from '../../globalValues';
 import { ChallengesService } from 'src/app/services/challenges.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,16 +29,30 @@ export class DashboardComponent implements OnInit {
     private menuCtrl: MenuController,
     private modalCtrl: ModalController,
     private challengeService: ChallengesService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('user'));
+
+    this.userService.getUserByUsername(this.user.username).subscribe(user => {
+      const userInterface: User = {
+        id: user[0].payload.doc.id,
+        ...user[0].payload.doc.data()
+      };
+
+      this.user = userInterface;
+
+      localStorage.setItem('user', JSON.stringify(userInterface));
+    });
+
     this.getMyPetitions();
   }
 
   logOut() {
     this.afAuth.signOut();
     this.authGuardService.logout();
+    this.removeSelected(0);
     localStorage.removeItem('user');
     this.menuCtrl.close();
     this.router.navigate(['/']);
