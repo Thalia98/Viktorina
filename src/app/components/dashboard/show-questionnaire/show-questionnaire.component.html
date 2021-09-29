@@ -3,7 +3,7 @@
 </div>
 <div *ngIf="loading" class="backdrop"></div>
 
-<div class="container mt-3">
+<div class="container mt-3" style="padding-bottom: 50px;">
   <div class="card">
     <div class="card-body text-center">
       <h2 class="title">{{ questionnaire?.title | uppercase }}</h2>
@@ -34,6 +34,6 @@
     </ion-col>
   </ion-row>
 
-  <button routerLink="/dashboard/myQuestionnaires" class="btn btn-secondary mt-3 btn-accept w-100">VOLVER</button>
+  <button routerLink="/dashboard/myQuestionnaires" class="btn btn-secondary mt-3 btn-accept w-75 button-back">VOLVER</button>
 
 </div>

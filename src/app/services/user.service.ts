@@ -17,11 +17,11 @@ export class UserService {
   }
 
   checkUsername(username): Observable<any> {
-    return this.firestore.collection('Users', ref => ref.where('username', '==', username)).snapshotChanges();
+    return this.firestore.collection('Users', ref => ref.where('username', '==', username)).get();
   }
 
   getUser(uid): Observable<any> {
-    return this.firestore.collection('Users', ref => ref.where('uid', '==', uid)).snapshotChanges();
+    return this.firestore.collection('Users', ref => ref.where('uid', '==', uid)).get();
   }
 
   getUserById(id): Observable<any> {

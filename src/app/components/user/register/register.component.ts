@@ -67,7 +67,7 @@ export class RegisterComponent implements OnInit {
     this.showErrorUsername = false;
 
     this.userService.checkUsername(this.formGroup.get('user').value).subscribe(res => {
-      if(res.length === 0) {
+      if(res.docs.length === 0) {
         this.register();
       } else {
         this.loading = false;

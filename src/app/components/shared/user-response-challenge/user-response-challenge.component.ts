@@ -85,8 +85,9 @@ export class UserResponseChallengeComponent implements OnInit {
   }
 
   updateCoins(id) {
-    this.userService.updateCoins(id, 10).then(res => {
-      this.user.coins = 10;
+    let totalCoins = this.user.coins + 10;
+    this.userService.updateCoins(id, totalCoins).then(res => {
+      this.user.coins = totalCoins;
       localStorage.setItem('user', JSON.stringify(this.user));
     });
   }

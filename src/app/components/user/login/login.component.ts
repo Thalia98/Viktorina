@@ -59,8 +59,8 @@ export class LoginComponent implements OnInit {
       this.loading = false;
 
       const userInterface: User = {
-        id: res[0].payload.doc.id,
-        ...res[0].payload.doc.data()
+        id: res.docs[0].id,
+        ...res.docs[0].data()
       };
 
       this.setUserToLocalStorage(userInterface);

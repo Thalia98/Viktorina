@@ -47,8 +47,9 @@ export class UserResponseComponent implements OnInit {
   }
 
   updateCoins() {
-    this.userService.updateCoins(this.user.id, 3).then(() => {
-      this.user.coins = 3;
+    let totalCoins = this.user.coins + 3;
+    this.userService.updateCoins(this.user.id, totalCoins).then(() => {
+      this.user.coins = totalCoins;
       localStorage.setItem('user', JSON.stringify(this.user));
     });
   }

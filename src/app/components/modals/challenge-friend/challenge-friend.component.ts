@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { ChatService } from 'src/app/services/chat.service';
 import { UserService } from 'src/app/services/user.service';
 import { RESPONSES } from 'src/app/globalValues';
+import { User } from 'src/app/interfaces/User';
 
 @Component({
   selector: 'app-challenge-friend',
@@ -26,6 +27,16 @@ export class ChallengeFriendComponent {
 
   ionViewWillEnter() {
     this.getMyFriends();
+
+    this.userService.getUserById(this.user.id).subscribe(user => {
+      const userInterface: User = {
+        id: user.id,
+        ...user.data()
+      };
+      
+      this.user = userInterface;
+      localStorage.setItem('user', JSON.stringify(userInterface));
+    });
   }
 
   closeModal() {
