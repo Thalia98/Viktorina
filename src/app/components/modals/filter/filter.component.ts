@@ -77,24 +77,21 @@ export class FilterComponent implements OnInit {
   filter() {
     let allFalse = true;
     this.collectionSearch = [];
+    let collectionCategorySelected = this.categoryCollection.filter(questionnaire => questionnaire.isSelected).length > 0 ? this.categoryCollection.filter(questionnaire => questionnaire.isSelected) : this.categoryCollection;
+    let collectionLevelSelected = this.levelCollection.filter(questionnaire => questionnaire.isSelected).length > 0 ? this.levelCollection.filter(questionnaire => questionnaire.isSelected) : this.levelCollection ;
 
-    this.categoryCollection.forEach(category => {
-      if (category.isSelected) {
+    collectionCategorySelected.forEach(category => {
+      collectionLevelSelected.forEach(level => {
         allFalse = false;
         this.isFilter = true;
-        let collectionCategory = this.collection.filter(questionnaire => questionnaire.category === category.name);
-        collectionCategory.forEach(questionnaireFilter => this.collectionSearch.push(questionnaireFilter));
-      }
+        let collectionFilter = this.collection.filter(questionnaire => questionnaire.category === category.name && questionnaire.level === level.name);
+        collectionFilter.forEach(questionnaireFilter => this.collectionSearch.push(questionnaireFilter));
+      });
     });
 
-    this.levelCollection.forEach(level => {
-      if (level.isSelected) {
-        allFalse = false;
-        this.isFilter = true;
-        let collectionLevel = this.collection.filter(questionnaire => questionnaire.level === level.name);
-        collectionLevel.forEach(questionnaireFilter => this.collectionSearch.push(questionnaireFilter));
-      }
-    });
+    if(this.categoryCollection.length === collectionCategorySelected.length && this.levelCollection.length === collectionLevelSelected.length) {
+      this.isFilter = false;
+    }
 
     if (allFalse) {
       this.collectionSearch = this.collection;
