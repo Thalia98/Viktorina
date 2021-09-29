@@ -22,7 +22,7 @@
   <input [(ngModel)]="message" class="textarea" type="text" placeholder="Escribe un mensaje" />
 
   <ion-buttons class="send-icon">
-    <ion-button color="dark" (click)="sendMessage()">
+    <ion-button [disabled]="message === '' || message === undefined" color="dark" (click)="sendMessage()">
       <ion-icon name="send"></ion-icon>
     </ion-button>
   </ion-buttons>
